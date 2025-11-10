@@ -1,4 +1,3 @@
-//# .github.io
 # 👋 Hi, I'm Taizoon Chunawala
 
 🎓 Ph.D. Candidate in Mechanical Engineering @ Virginia Tech  
