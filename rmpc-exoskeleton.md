@@ -4,7 +4,7 @@
 
 This project develops a **Robust Model Predictive Control (RMPC)** framework for a wearable **wrist exoskeleton** designed to suppress tremor-induced disturbances while preserving voluntary motion. The controller is built for the **Tremor Alleviating Wrist Exoskeleton (TAWE)** and targets the dynamics and uncertainty patterns observed in **Essential Tremor (ET)**.
 
-> ✅ *This project is entirely **simulation-based** and focuses on controller design, robustness analysis, and performance benchmarking under clinically representative tremor disturbances.*
+<!-- > ✅ *This project is entirely **simulation-based** and focuses on controller design, robustness analysis, and performance benchmarking under clinically representative tremor disturbances.* -->
 
 ---
 
