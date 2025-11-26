@@ -10,7 +10,7 @@ This project develops a multi-rate nonlinear MPC (MR-NMPC) framework for wall-su
 ## Experimental Results
 
 <!-- Example image: replace with your actual file/path -->
-![Unitree Go2 wall-supported bipedal locomotion](assets/bipedal/exp1.png)
+![Unitree Go2 wall-supported bipedal locomotion](assets/bipedal/comparison_poster.png)
 
 You can briefly describe each image here: terrain type, controller settings, success metrics, etc.
 
