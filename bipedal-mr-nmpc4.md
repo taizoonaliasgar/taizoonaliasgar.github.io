@@ -92,7 +92,7 @@ All plots and performance breakdowns are shown in the **project video above**.
 
 For full mathematical formulation and control architecture:
 
-📄 **[Download Conference Poster (PDF)](assets/bipedal/bipedal_poster.pdf)**
+📄 **[Download Conference Poster (PDF)](assets/bipedal/bipedal_MRNMPC.pdf)**
 
 (This contains the full MR-NMPC formulation, architecture diagram, and quantitative plots.)
 
