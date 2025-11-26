@@ -27,8 +27,6 @@ Patients with **Essential Tremor (ET)** experience involuntary oscillatory wrist
 - **Reject involuntary tremor motion**
 - **Preserve intended voluntary motion**
 - Accommodate and remain robust to **patient-to-patient variability**
-<! -- - Respect **actuator, safety, and comfort constraints**
-- Remain **computationally feasible for real-time use**-->
 
 Standard MPC assumes nominal dynamics and degrades when tremor torques and user-specific variability deviate from the model. This motivates the need for an **explicitly robust control formulation**.
 
