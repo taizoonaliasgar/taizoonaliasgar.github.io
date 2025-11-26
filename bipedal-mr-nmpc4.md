@@ -66,26 +66,49 @@ This project eliminates that limitation by **optimizing footsteps, forces, and b
 - **Configuration:** Dynamically unstable upright bipedal posture  
 - **Stabilization strategy:** Monkey-like contact sequencing using front limbs for torso stabilization during transitions
 
-📷 *(Representative hardware photos and sequences can be added here optionally if desired.)*
-<div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+📷 *Representative simulation & hardware photos*
+<div style="display: flex; justify-content: center; gap: 24px; flex-wrap: wrap;">
 
+  <!-- Left image (landscape) -->
   <div style="text-align: center; width: 45%;">
-    <div style="height: 260px; overflow: hidden; border-radius: 8px;">
+    <div style="
+      height: 260px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f4f4f4;
+      border-radius: 10px;
+      overflow: hidden;">
+      
       <img src="assets/bipedal/thumbnail1.PNG"
-           style="width: 100%; height: 100%; object-fit: cover;">
+           style="max-width: 100%; max-height: 100%; object-fit: contain;">
     </div>
-    <p><em>Unitree A1 traversing an uneven wooden-block terrain under uncertainty.</em></p>
+    <p style="margin-top: 8px;">
+      <em>Unitree A1 traversing an uneven wooden-block terrain under uncertainty.</em>
+    </p>
   </div>
 
+  <!-- Right image (portrait) -->
   <div style="text-align: center; width: 45%;">
-    <div style="height: 260px; overflow: hidden; border-radius: 8px;">
+    <div style="
+      height: 260px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f4f4f4;
+      border-radius: 10px;
+      overflow: hidden;">
+      
       <img src="assets/bipedal/thumbnail2.PNG"
-           style="width: 100%; height: 100%; object-fit: cover;">
+           style="max-width: 100%; max-height: 100%; object-fit: contain;">
     </div>
-    <p><em>Wall-supported upright bipedal locomotion of Unitree Go2 under real-time MR-NMPC control.</em></p>
+    <p style="margin-top: 8px;">
+      <em>Wall-supported upright bipedal locomotion of Unitree Go2 under real-time MR-NMPC control.</em>
+    </p>
   </div>
 
 </div>
+
 
 ---
 
