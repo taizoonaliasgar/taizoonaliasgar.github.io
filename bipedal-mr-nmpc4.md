@@ -66,7 +66,7 @@ This project eliminates that limitation by **optimizing footsteps, forces, and b
 - **Configuration:** Dynamically unstable upright bipedal posture  
 - **Stabilization strategy:** Monkey-like contact sequencing using front limbs for torso stabilization during transitions
 
-📷 *Representative simulation & hardware photos*
+📷 **Representative simulation & hardware photos**
 <div style="display: flex; justify-content: center; gap: 24px; flex-wrap: wrap;">
 
   <!-- Left image (landscape) -->
@@ -103,7 +103,7 @@ This project eliminates that limitation by **optimizing footsteps, forces, and b
            style="max-width: 100%; max-height: 100%; object-fit: contain;">
     </div>
     <p style="margin-top: 8px;">
-      <em>Wall-supported upright bipedal locomotion of Unitree Go2 under real-time MR-NMPC control.</em>
+      <em>Wall-supported upright bipedal locomotion of Unitree Go2 under MR-NMPC control.</em>
     </p>
   </div>
 
