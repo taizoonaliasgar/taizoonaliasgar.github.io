@@ -40,14 +40,14 @@ This video includes:
 
 ## 🎯 Problem Addressed
 
-Legged robots operating in upright or underactuated configurations face major challenges due to:
+Agile upright locomotion demands fast, reliable footstep planning under rapidly changing contact and support conditions. Errors in contact timing or foothold selection directly lead to loss of balance and failure.
 
-- **Sparse and changing footholds**
-- **Uncertain contact geometry**
-- **Strong dynamic coupling during rapid transitions**
+- Upright configurations are **dynamically unstable**
+- Motion, contact forces, and foot placement are **strongly coupled**
+- Traditional MPC uses **heuristic footstep planning**, limiting robustness
 
-Traditional MPC approaches rely on **heuristic footstep planning**, which limits robustness on highly uneven terrain.  
-This project eliminates that limitation by **optimizing footsteps, forces, and body motion jointly inside MPC**.
+This work overcomes these limitations by **jointly optimizing footsteps, forces, and body motion inside a single real-time MPC**, enabling robust locomotion under severe terrain and contact uncertainty.
+
 
 ---
 
@@ -114,9 +114,6 @@ This project eliminates that limitation by **optimizing footsteps, forces, and b
 
 ## 📊 Key Results (From Hardware & Simulation)
 
-- **Traversal success rate:**
-  - **MR-NMPC:** ~66%
-  - **Raibert heuristic baseline:** <5%
 - **13× improvement** in uneven terrain traversal distance: **MR-NMPC:** ~66% vs **Raibert heuristic baseline:** <5%
 - Successful **crouch → stand → sustained bipedal trot in place**
 - Robust recovery from:
