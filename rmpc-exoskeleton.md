@@ -175,6 +175,26 @@ If you would like to feature plots on the webpage, place them in:
   <em>Tracking RMSE under tremor disturbance for independent joint angles q₁ and q₂.</em>
 </p>
 
+<div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+
+  <!-- Constant reference card -->
+  <div style="flex: 1 1 260px; max-width: 360px; border: 1px solid #ddd; border-radius: 10px; padding: 12px 16px;">
+    <h4 style="text-align:center; margin: 4px 0 8px 0;">Constant Reference</h4>
+    <hr style="border:none; border-top:1px solid #eee; margin:6px 0 10px 0;">
+    <p style="margin: 4px 0;"><strong>Joint q₁:</strong> 0.031 → <strong>0.014</strong>  (~55% lower)</p>
+    <p style="margin: 4px 0;"><strong>Joint q₂:</strong> 0.072 → <strong>0.034</strong>  (~53% lower)</p>
+  </div>
+
+  <!-- Sinusoidal reference card -->
+  <div style="flex: 1 1 260px; max-width: 360px; border: 1px solid #ddd; border-radius: 10px; padding: 12px 16px;">
+    <h4 style="text-align:center; margin: 4px 0 8px 0;">Sinusoidal Reference</h4>
+    <hr style="border:none; border-top:1px solid #eee; margin:6px 0 10px 0;">
+    <p style="margin: 4px 0;"><strong>Joint q₁:</strong> 0.031 → <strong>0.015</strong>  (~52% lower)</p>
+    <p style="margin: 4px 0;"><strong>Joint q₂:</strong> 0.072 → <strong>0.034</strong>  (~53% lower)</p>
+  </div>
+
+</div>
+
 - **Consistent performance improvement** across both FE and RUD joints  
 - **Improved phase alignment and reduced oscillation amplitude**  
 - **More decisive and anticipatory control behavior** relative to reactive MPC  
