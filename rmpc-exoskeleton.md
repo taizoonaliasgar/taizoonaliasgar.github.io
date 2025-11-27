@@ -133,7 +133,7 @@ If you would like to feature plots on the webpage, place them in:
 
 ## 📊 Key Quantitative Results
 
-- **≈ 2× reduction in joint-angle RMSE** under tremor disturbances compared to standard MPC
+- **≈ 2× reduction in joint-angle Root Mean Square Error(RMSE)** under tremor disturbances compared to standard MPC
 <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
 
   <!-- Constant reference card -->
@@ -163,6 +163,40 @@ If you would like to feature plots on the webpage, place them in:
   - Multiple disturbance amplitudes
 
 ---
+
+## 📄 Related Publication (Under Review)
+
+This work is currently **under peer review** and will be made publicly available once the review process is complete.
+
+**Manuscript Title:**  
+*Robust Model Predictive Control of a Tremor-Suppression Wrist Exoskeleton*
+
+📌 *The full paper (PDF) will be uploaded here immediately after the final decision.*
+
+<!-- Uncomment once accepted / available -->
+<!-- 📄 [Download Paper (PDF)](assets/exoskeleton/rmpc_tremor_exoskeleton.pdf) -->
+
+---
+
+## 🏭 Industry Relevance
+
+This project demonstrates end-to-end capability in designing **robust, real-time controllers for human-interactive robotic systems** under uncertainty. The methods and insights directly transfer to:
+
+- **Medical & assistive robotics:** tremor suppression, rehabilitation exoskeletons, prosthetics  
+- **Human–robot interaction:** control design under unpredictable, user-dependent disturbances  
+- **Embedded control systems:** real-time MPC with tight computation and safety constraints  
+- **Wearable robotics & mechatronics:** torque-limited actuators, joint safety, and comfort-aware control  
+
+### Key Engineering Skills Demonstrated
+- Robust Model Predictive Control (RMPC)
+- Data-driven uncertainty modeling
+- Reduced-order dynamic modeling
+- Real-time constrained optimization
+- Simulation benchmarking & performance validation
+- Safety-critical control for human-in-the-loop systems
+
+This work reflects the ability to take a problem from **disturbance characterization → dynamic modeling → robust controller synthesis → quantitative performance validation**, which directly aligns with industrial R&D workflows in **medical devices, robotics startups, and advanced control teams**.
+
 
 
 
