@@ -104,7 +104,6 @@ This ensures a **controlled and fair comparison** between MPC and RMPC.
 
 ## 📈 Representative Simulation Plots
 
-If you would like to feature plots on the webpage, place them in:
 <div style="display: flex; justify-content: center; gap: 24px; flex-wrap: wrap;">
 
   <!-- Steady Reference -->
