@@ -17,7 +17,13 @@ This project develops a **Robust Model Predictive Control (RMPC)** framework for
 - **Goal:** Suppress pathological tremor while allowing **natural voluntary wrist motion**
 - **Sensing (for model & validation):** Encoders + IMU
 - **Validation Mode:** High-fidelity numerical simulation
-
+<div style="text-align:center; margin-bottom: 24px;">
+  <img src="assets/exoskeleton/TAWE (1).png"
+       style="max-width: 85%; border-radius: 10px;">
+  <p style="margin-top: 8px;">
+    <em>Tremor Alleviating Wrist Exoskeleton (TAWE) used for RMPC controller design and validation.</em>
+  </p>
+</div>
 ---
 
 ## 🎯 Problem Addressed
@@ -96,6 +102,35 @@ This ensures a **controlled and fair comparison** between MPC and RMPC.
 
 ---
 
+## 📈 Representative Simulation Plots (Optional)
+
+If you would like to feature plots on the webpage, place them in:
+<div style="display: flex; justify-content: center; gap: 24px; flex-wrap: wrap;">
+
+  <!-- Steady Reference -->
+  <div style="text-align: center; width: 45%;">
+    <div style="height: 260px; display: flex; align-items: center; justify-content: center;">
+      <img src="assets/exoskeleton/steady_reference_tracking3.png"
+           style="max-width: 100%; max-height: 100%; object-fit: contain;">
+    </div>
+    <p style="margin-top: 8px;">
+      <em>Steady reference tracking under tremor disturbance: RMPC maintains tighter tracking and reduced oscillation compared to MPC.</em>
+    </p>
+  </div>
+
+  <!-- Sinusoidal Reference -->
+  <div style="text-align: center; width: 45%;">
+    <div style="height: 260px; display: flex; align-items: center; justify-content: center;">
+      <img src="assets/exoskeleton/sin_reference_tracking3 (1).png"
+           style="max-width: 100%; max-height: 100%; object-fit: contain;">
+    </div>
+    <p style="margin-top: 8px;">
+      <em>Sinusoidal reference tracking under tremor disturbance: RMPC achieves improved phase alignment and lower tracking error than MPC.</em>
+    </p>
+  </div>
+
+</div>
+
 ## 📊 Key Quantitative Results
 
 - **≈ 2× reduction in joint-angle RMSE** under tremor disturbances compared to standard MPC  
@@ -109,7 +144,5 @@ This ensures a **controlled and fair comparison** between MPC and RMPC.
 
 ---
 
-## 📈 Representative Simulation Plots (Optional)
 
-If you would like to feature plots on the webpage, place them in:
 
