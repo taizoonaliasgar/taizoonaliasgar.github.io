@@ -48,7 +48,6 @@ The control strategy is based on a **vertex-based Robust MPC formulation** with 
 
 - **Reduced-order dynamic model:**  
   The constrained multibody dynamics of TAWE are reduced to a **2-DoF wrist model** in flexion/extension(FE) and radial/ulnar deviation(RUD) for control synthesis.
-
 - **Data-driven disturbance modeling:**  
   - Tremor-like torque inputs are generated in the clinically relevant **3–7 Hz band**  
   - Resulting joint-velocity deviations are analyzed in **velocity space**  
