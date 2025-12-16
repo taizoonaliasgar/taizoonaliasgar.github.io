@@ -24,4 +24,4 @@
 - 💼 [LinkedIn](https://linkedin.com/in/taizoon-chunawala)
 - 📄 [Resume (PDF)](resume.pdf)
 - ✉️ taizoon.chunawala@gmail.com
-<!-- - 🎥 [Demos](https://www.youtube.com/@TaizoonChunawala)-->
+- 🎥 [Demos](https://www.youtube.com/@TaizoonChunawala)
