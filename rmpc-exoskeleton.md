@@ -1,208 +1,88 @@
 [← Back to Home](./)
 
-# Robust MPC for Tremor-Suppression Wrist Exoskeleton (TAWE)
+# Robust MPC for a Tremor-Suppression Wrist Exoskeleton (TAWE)
 
-<!--This project develops a **Robust Model Predictive Control (RMPC)** framework for a wearable **wrist exoskeleton** designed to suppress tremor-induced disturbances while preserving voluntary motion. The controller is built for the **Tremor Alleviating Wrist Exoskeleton (TAWE)** and targets the dynamics and uncertainty patterns observed in **Essential Tremor (ET)**.
+**ASME Journal of Dynamic Systems, Measurement, and Control** (accepted, in press) · T. Chunawala, S. Janakaraj, J. Decker, M. Ahmad, S. Vijayan, O. Barry, K. Akbari Hamed  
+🎥 [Video](https://www.youtube.com/watch?v=X2gqHbkB6GM) · 📄 Paper link coming soon
 
- > ✅ *This project is entirely **simulation-based** and focuses on controller design, robustness analysis, and performance benchmarking under clinically representative tremor disturbances.* -->
+This project develops a **robust model predictive controller (RMPC)** for the **Tremor Alleviating Wrist Exoskeleton (TAWE)**. It suppresses essential-tremor motion while preserving voluntary wrist movement. Instead of reacting to tremor after it happens, the controller **plans in advance for the worst-case tremor disturbances**.
 
-This project implements a **Robust Model Predictive Controller (RMPC)** for a **wearable wrist exoskeleton** to suppress tremor-induced motion while preserving natural voluntary movement. The controller is developed for the **Tremor Alleviating Wrist Exoskeleton (TAWE)** and targets the uncertainty patterns observed in **Essential Tremor (ET)**.
-
-<!-- > ✅ *Simulation-based validation under clinically representative tremor disturbances, with consistent RMSE reduction over standard MPC.*-->
+> All controller results are from **simulation**. The tremor data used to build and test the controller was **recorded from essential-tremor patients** wearing TAWE.
 
 ---
 
-## 🦾 System Overview – TAWE Exoskeleton
+## 🎥 Video
 
-- **Device:** Tremor Alleviating Wrist Exoskeleton (TAWE)  
-- **DOFs:** 6-DoF rigid-link mechanism, with **2 actuated joints**:
-  - Wrist Flexion/Extension (FE)
-  - Radial/Ulnar Deviation (RUD)
-- **Goal:** Suppress pathological tremor while allowing **natural voluntary wrist motion**
-- **Sensing (for model & validation):** Encoders + IMU
-- **Validation Mode:** High-fidelity numerical simulation
+▶️ **[Watch the project video](https://www.youtube.com/watch?v=X2gqHbkB6GM)** (about 2.5 minutes)
+
+---
+
+## 🦾 System
+
+- **Device:** TAWE, a 6-DoF passive linkage with **2 actuated joints**: wrist flexion/extension (FE, up-down) and radial/ulnar deviation (RUD, side-to-side)
+- **Model:** the 9-DoF arm–exoskeleton system, reduced through its holonomic constraints to a 2-DoF wrist model for real-time control
+- **Tremor data:** recorded with TAWE in passive mode during standard clinical tasks. ET patients show distinct power peaks in the **4–12 Hz** band.
+
 <div style="text-align:center; margin-bottom: 24px;">
-  <img src="assets/exoskeleton/TAWE.png"
-       style="max-width: 85%; border-radius: 10px;">
-  <p style="margin-top: 8px;">
-    <em>Tremor Alleviating Wrist Exoskeleton (TAWE) used for RMPC controller design and validation.</em>
-  </p>
+  <img src="assets/exoskeleton/TAWE.png" alt="Tremor Alleviating Wrist Exoskeleton (TAWE) worn on the forearm" style="max-width: 85%; border-radius: 10px;">
+  <p style="margin-top: 8px;"><em>The Tremor Alleviating Wrist Exoskeleton (TAWE).</em></p>
 </div>
----
-
-## 🎯 Problem Addressed
-
-Patients with **Essential Tremor (ET)** experience involuntary oscillatory wrist motion (typically 4–12 Hz) that overlays voluntary movement and degrades task performance. A tremor-suppression controller must:
-
-- **Reject involuntary tremor motion**
-- **Preserve intended voluntary motion**
-- Accommodate and remain robust to **patient-to-patient variability**
-
-Standard MPC assumes nominal dynamics and degrades when tremor torques and user-specific variability deviate from the model. This motivates the need for an **explicitly robust control formulation**.
 
 ---
 
-## 🧠 RMPC Approach – Key Ideas
+## 🧠 Approach
 
-The control strategy is based on a **vertex-based Robust MPC formulation** with a data-driven uncertainty set:
-
-- **Reduced-order dynamic model:**  
-  The constrained multibody dynamics of TAWE are reduced to a **2-DoF wrist model** in flexion/extension(FE) and radial/ulnar deviation(RUD) for control synthesis.
-- **Data-driven disturbance modeling:**  
-  - Tremor-like torque inputs are generated in the clinically relevant **3–7 Hz band**  
-  - Resulting joint-velocity deviations are analyzed in **velocity space**  
-  <!-- - A minimum-area **convex polygon** is fit to define a **bounded disturbance set**-->
-
-- **Vertex-based uncertainty representation:**  
-  - The uncertainty set is encoded as the **convex hull of worst-case vertices**
-  - RMPC enforces feasibility and robustness across **all vertices simultaneously**
-
-- **State-dependent cost weighting (agility):**  
-  - Each disturbance vertex is weighted based on **alignment with the current tracking error**
-  - Vertices aligned with the dominant deviation direction are **penalized more heavily**
-  - This increases **disturbance rejection exactly where tremor is most harmful**
-
-<!-- - **Real-time oriented design:**  
-  - Discrete-time control with **20 ms sampling time (50 Hz)**
-  - Prediction horizon: **N = 15**
-  - Balanced for **robustness vs. computational load**-->
+- **One branch per extreme disturbance:** tremor torque is mapped to joint-velocity deviations, and a **convex hull with 4 vertices** bounds them. The RMPC predicts one branch for each vertex, with its own cost and constraints.
+- **One combined optimization:** branch costs are summed and constraints are stacked, and all branches **share the same first control input**, which is the action applied now.
+- **State-dependent cost weighting (key contribution):** each branch is weighted by how closely its disturbance aligns with the current tracking error, so the controller **prioritizes the tremor currently pushing the wrist off course**. This avoids the sluggish, overly conservative behavior of equal weighting.
+- **Real-time:** 20 ms sampling, prediction horizon N = 15, mean solve time **14.6 ms** (MATLAB, desktop).
 
 ---
 
-## ⚙️ Controller Configuration (High Level)
+## 📊 Results (simulation)
 
-- **State:** Wrist angles and angular velocities in FE and RUD  
-- **Inputs:** Two actuator torques (FE and RUD)
-- **Cost structure:**
-  - High penalty on **position tracking error**
-  - Moderate penalty on **velocity error**
-  - Moderate penalty on **control effort**
-- **Constraints:**
-  - Joint limits
-  - Torque limits
-  - Wearable safety & comfort bounds
-- **Real-time oriented design:**  
-  - Discrete-time control with **20 ms sampling time(50 Hz)**
-  - Prediction horizon: **N = 15**
-  <!-- - Balanced for **robustness vs. computational load**-->
+**Benchmark tremor** (amplitude-modulated sinusoids, 3–7 Hz). Tracking error, RMSE in rad (lower is better):
 
-A **single robust optimization problem** is solved at each time step with a **shared first control input across all uncertainty vertices** to guarantee causality and robustness.
+| Joint | MPC | NMPC | MPC-NDO | **RMPC** |
+|---|---|---|---|---|
+| Side-to-side (RUD) | 0.031 | 0.030 | 0.015 | **0.010** |
+| Up-down (FE) | 0.072 | 0.074 | 0.035 | **0.028** |
 
----
+RMPC has **20–33% lower error** than MPC-NDO, an MPC augmented with a nonlinear disturbance observer and the strongest baseline. The observer reacts with a phase lag, while RMPC corrects proactively.
 
-## 🧪 Simulation-Based Validation
+**Stress tests** versus MPC-NDO:
+- **Sensor noise (0.01 rad):** MPC-NDO amplifies the noise, and RMPC keeps **up to 46% lower** error.
+- **50% actuation latency:** both controllers perform comparably.
 
-The RMPC framework is validated through high-fidelity numerical simulations of the TAWE wrist exoskeleton under **clinically representative tremor-like torque disturbances** applied in the **3–7 Hz range**.
-
-Simulation studies evaluate:
-- Reference tracking under involuntary tremor inputs  
-- Robustness to bounded user-specific disturbance uncertainty  
-- Comparative performance against a **standard MPC controller** under identical conditions.
-
-<!--All controller comparisons use identical:
-- Initial conditions  
-- Reference trajectories  
-- Actuator limits  
-- Joint constraints  
-
-This ensures a **controlled and fair comparison** between MPC and RMPC.-->
-
----
-
-## 📈 Representative Simulation Plots
+**Patient-derived tremor:** RMPC cuts tracking error by **up to 47%** versus MPC-NDO (RMSE 0.015 / 0.032 vs. 0.024 / 0.060 rad).
 
 <div style="display: flex; justify-content: center; gap: 24px; flex-wrap: wrap;">
-
-  <!-- Steady Reference -->
   <div style="text-align: center; width: 45%;">
     <div style="height: 260px; display: flex; align-items: center; justify-content: center;">
-      <img src="assets/exoskeleton/steady_reference_tracking3.png"
-           style="max-width: 100%; max-height: 100%; object-fit: contain;">
+      <img src="assets/exoskeleton/steady_reference_tracking3.png" alt="Constant-reference wrist tracking under tremor disturbance" style="max-width: 100%; max-height: 100%; object-fit: contain;">
     </div>
-    <p style="margin-top: 8px;">
-      <em>Steady reference tracking under tremor disturbance: RMPC maintains tighter tracking and reduced oscillation compared to MPC.</em>
-    </p>
+    <p style="margin-top: 8px;"><em>Constant reference: RMPC (red) vs. nominal MPC (blue) under tremor disturbance.</em></p>
   </div>
-
-  <!-- Sinusoidal Reference -->
   <div style="text-align: center; width: 45%;">
     <div style="height: 260px; display: flex; align-items: center; justify-content: center;">
-      <img src="assets/exoskeleton/sin_reference_tracking3.png"
-           style="max-width: 100%; max-height: 100%; object-fit: contain;">
+      <img src="assets/exoskeleton/sin_reference_tracking3.png" alt="Sinusoidal-reference wrist tracking under tremor disturbance" style="max-width: 100%; max-height: 100%; object-fit: contain;">
     </div>
-    <p style="margin-top: 8px;">
-      <em>Sinusoidal reference tracking under tremor disturbance: RMPC achieves improved phase alignment and lower tracking error than MPC.</em>
-    </p>
+    <p style="margin-top: 8px;"><em>Sinusoidal reference: RMPC (red) vs. nominal MPC (blue) under tremor disturbance.</em></p>
   </div>
-
 </div>
-
-## 📊 Key Quantitative Results
-
-- **≈ 2× reduction in joint-angle Root Mean Square Error(RMSE)** under tremor disturbances compared to standard MPC
-<div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
-
-  <!-- Constant reference card -->
-  <div style="flex: 1 1 260px; max-width: 360px; border: 1px solid #ddd; border-radius: 10px; padding: 12px 16px;">
-    <h4 style="text-align:center; margin: 4px 0 8px 0;">Constant Reference</h4>
-    <hr style="border:none; border-top:1px solid #eee; margin:6px 0 10px 0;">
-    <p style="margin: 4px 0;"><strong>Joint q₁:</strong> 0.031 → <strong>0.014</strong>  (~55% lower)</p>
-    <p style="margin: 4px 0;"><strong>Joint q₂:</strong> 0.072 → <strong>0.034</strong>  (~53% lower)</p>
-  </div>
-
-  <!-- Sinusoidal reference card -->
-  <div style="flex: 1 1 260px; max-width: 360px; border: 1px solid #ddd; border-radius: 10px; padding: 12px 16px;">
-    <h4 style="text-align:center; margin: 4px 0 8px 0;">Sinusoidal Reference</h4>
-    <hr style="border:none; border-top:1px solid #eee; margin:6px 0 10px 0;">
-    <p style="margin: 4px 0;"><strong>Joint q₁:</strong> 0.031 → <strong>0.015</strong>  (~52% lower)</p>
-    <p style="margin: 4px 0;"><strong>Joint q₂:</strong> 0.072 → <strong>0.034</strong>  (~53% lower)</p>
-  </div>
-
-</div>
-
-- **Consistent performance improvement** across both FE and RUD joints  
-- **Improved phase alignment and reduced oscillation amplitude**  
-- **More decisive and anticipatory control behavior** relative to reactive MPC  
-- Robust performance maintained across:
-  - Multiple reference trajectories
-  - Multiple tremor frequencies (3–7 Hz)
-  - Multiple disturbance amplitudes
 
 ---
 
-## 📄 Related Publication (Under Review)
+## 🛠️ What I built
 
-This work is currently **under peer review** and will be made publicly available once the review process is complete.
-
-**Manuscript Title:**  
-*Robust Model Predictive Control of a Tremor-Suppression Wrist Exoskeleton*
-
-📌 *The full paper (PDF) will be uploaded here immediately after the final decision.*
-
-<!-- Uncomment once accepted / available -->
-<!-- 📄 [Download Paper (PDF)](assets/exoskeleton/rmpc_tremor_exoskeleton.pdf) -->
+- The reduced-order wrist model and the RMPC formulation with state-dependent cost weighting
+- The data-driven convex uncertainty set derived from tremor torques
+- The benchmark against MPC, NMPC and MPC-NDO, including noise, latency and patient-data stress tests
 
 ---
 
-## 🏭 Industry Relevance
+## 🔗 Related Project
 
-This project demonstrates end-to-end capability in designing **robust, real-time controllers for human-interactive robotic systems** under uncertainty. The methods and insights directly transfer to:
+- [Multi-Rate NMPC for Wall-Supported Bipedal Locomotion](bipedal-mr-nmpc5.md)
 
-- **Medical & assistive robotics:** tremor suppression, rehabilitation exoskeletons, prosthetics  
-- **Human–robot interaction:** control design under unpredictable, user-dependent disturbances  
-- **Embedded control systems:** real-time MPC with tight computation and safety constraints  
-- **Wearable robotics & mechatronics:** torque-limited actuators, joint safety, and comfort-aware control  
-
-### Key Engineering Skills Demonstrated
-- Robust Model Predictive Control (RMPC)
-- Data-driven uncertainty modeling
-- Reduced-order dynamic modeling
-- Real-time constrained optimization
-- Simulation benchmarking & performance validation
-- Safety-critical control for human-in-the-loop systems
-
-This work reflects the ability to take a problem from **disturbance characterization → dynamic modeling → robust controller synthesis → quantitative performance validation**, which directly aligns with industrial R&D workflows in **medical devices, robotics startups, and advanced control teams**.
-
-
-
-
+[← Back to Home](./)
