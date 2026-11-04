@@ -1,160 +1,81 @@
 [← Back to Home](./)
 
-# Multi-Rate NMPC for Wall-Supported Bipedal Locomotion (Unitree Go2)
+# Multi-Rate NMPC for Wall-Supported Bipedal Locomotion of Quadrupedal Robots
 
-This project demonstrates a **real-time Multi-Rate Nonlinear Model Predictive Controller (MR-NMPC)** that enables a **Unitree Go2 quadruped to rise into an upright, wall-supported bipedal configuration and locomote over uneven terrain** with high reliability.
+**IEEE/RSJ IROS 2026** · T. Chunawala, J. Kim, K. Akbari Hamed  
+📄 [Paper (arXiv)](https://arxiv.org/abs/2607.01574) · 🎥 [Video](https://www.youtube.com/watch?v=N6XwNJ0E9s0)
 
-The system is **fully deployed on hardware** and integrates:
-- Footstep planning  
-- Reaction force optimization  
-- Whole-body tracking  
-
-in a **single real-time control pipeline**.
+This project lets a quadrupedal robot walk upright on its rear legs while bracing its front legs against nearby walls, for tight corridors and cluttered spaces. A **multi-rate nonlinear MPC (MR-NMPC)** plans the slow-updating footstep locations and the fast-updating body trajectory **together in one optimization**, instead of relying on a heuristic foot-placement rule.
 
 ---
 
-## 🎥 Hardware Demonstration & Technical Overview (Primary Reference)
+## 🎥 Video
 
-▶️ **[Watch the full project video](https://youtu.be/_dyIMfccwPk)**
-
-This video includes:
-- The complete **multi-rate control architecture**
-- Key **performance plots & baseline comparisons**
-- **Hardware experiments** on the physical Unitree Go2
-
-> 📌 *For technical details, controller structure, and quantitative results, please refer to the video above — it serves as the primary technical reference for this project.*
+▶️ **[Watch the project video](https://www.youtube.com/watch?v=N6XwNJ0E9s0)**: simulation results and preliminary hardware experiments.
 
 ---
 
-## 🔧 System Overview
+## 🎯 Problem
 
-- **Robot:** Unitree Go2  
-- **Hierarchical Control Stack:**
-  - High-level planner: **Multi-Rate NMPC(50 Hz)**
-  - Low-level tracking: **Whole-Body Controller(500 Hz)**
-- **Update Rates:**
-  - Footstep planning: **3 Hz**
-  - Reaction forces & CoM control: **50 Hz**
+- An upright, wall-supported posture is **underactuated, hybrid and dynamically unstable**, with brief, small-area contacts.
+- Body motion, contact forces and foot placement are **strongly coupled**, and they evolve at different rates.
+- Standard MPC assumes uniform input rates and usually places feet with a **heuristic** (such as the Raibert rule), which breaks down on irregular terrain at higher speeds.
 
 ---
 
-## 🎯 Problem Addressed
+## 🧠 Approach
 
-Agile upright locomotion demands fast, reliable footstep planning under rapidly changing contact and support conditions. Errors in contact timing or foothold selection directly lead to loss of balance and failure.
+- **Multi-rate NMPC (high level):** jointly plans discrete-time footstep locations (updated once per contact phase) and continuous-time center-of-mass and orientation trajectories, using a single-rigid-body model with contact constraints.
+- **Foothold propagation:** future footholds are part of the prediction dynamics, so the controller can choose **asymmetric front and rear step lengths** to keep balance.
+- **Whole-body controller (low level):** a nonlinear QP controller based on virtual constraints tracks the MPC references using the full-order robot dynamics.
 
-- Upright configurations are **dynamically unstable**
-- Motion, contact forces, and foot placement are **strongly coupled**
-- Traditional MPC uses **heuristic footstep planning**, limiting robustness
-
-This work overcomes these limitations by **jointly optimizing footsteps, forces, and body motion inside a single real-time MPC**, enabling robust locomotion under severe terrain and contact uncertainty.
-
-
----
-
-## 🚀 Key Contributions
-
-- **Unified optimization** of CoM motion, reaction forces, and discrete footsteps
-- **Multi-rate real-time execution** enabling both fast stabilization and slow step adaptation
-- **Contact-aware prediction**, allowing anticipation of upcoming contact domains
-- **Fully hardware validated** on a dynamically unstable upright robotic configuration
+| | |
+|---|---|
+| High-level MR-NMPC | **100 Hz**, horizon 20 steps (200 ms), mean solve **8.26 ms** (CasADi/IPOPT) |
+| Low-level whole-body controller | **1 kHz** |
+| Simulation | Unitree A1 in RaiSim |
+| Hardware | Unitree Go2 (preliminary) |
 
 ---
 
-## 🧪 Experimental Setup
+## 📊 Results
 
-- **Environment:** Random wooden-block terrain with limited and uneven footholds  
-- **Configuration:** Dynamically unstable upright bipedal posture  
-- **Stabilization strategy:** Monkey-like contact sequencing using front limbs for torso stabilization during transitions
+**Simulation (Unitree A1)**
+- **2.9× higher success rate** than MPC with Raibert-heuristic foot placement: **68.8% vs. 23.6%** across **250 randomized 7 m tracks** with random wooden-block terrain, with speeds ramped up to 0.8 m/s.
+- Rejects a **50 N** sinusoidal push while staying within safety and kinematic limits, by choosing shorter, asymmetric steps where the heuristic over-steps.
 
-📷 **Representative simulation & hardware photos**
+**Preliminary hardware (Unitree Go2)**
+- Real-time deployment: the robot moves from a crouch to **upright wall-supported bipedal locomotion** and keeps its balance for **over 60 s**.
+- The main limitation is noise in velocity estimation. Improving state estimation is ongoing work.
+
 <div style="display: flex; justify-content: center; gap: 24px; flex-wrap: wrap;">
-
-  <!-- Left image (landscape) -->
   <div style="text-align: center; width: 45%;">
-    <div style="
-      height: 260px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #f4f4f4;
-      border-radius: 10px;
-      overflow: hidden;">
-      
-      <img src="assets/bipedal/thumbnail1.PNG"
-           style="max-width: 100%; max-height: 100%; object-fit: contain;">
+    <div style="height: 260px; display: flex; align-items: center; justify-content: center; background: #f4f4f4; border-radius: 10px; overflow: hidden;">
+      <img src="assets/bipedal/thumbnail1.PNG" alt="Unitree A1 in simulation on uneven wooden-block terrain" style="max-width: 100%; max-height: 100%; object-fit: contain;">
     </div>
-    <p style="margin-top: 8px;">
-      <em>Unitree A1 traversing an uneven wooden-block terrain under uncertainty.</em>
-    </p>
+    <p style="margin-top: 8px;"><em>Simulation: Unitree A1 on randomized wooden-block terrain.</em></p>
   </div>
-
-  <!-- Right image (portrait) -->
   <div style="text-align: center; width: 45%;">
-    <div style="
-      height: 260px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #f4f4f4;
-      border-radius: 10px;
-      overflow: hidden;">
-      
-      <img src="assets/bipedal/thumbnail2.PNG"
-           style="max-width: 100%; max-height: 100%; object-fit: contain;">
+    <div style="height: 260px; display: flex; align-items: center; justify-content: center; background: #f4f4f4; border-radius: 10px; overflow: hidden;">
+      <img src="assets/bipedal/thumbnail2.PNG" alt="Unitree Go2 in a wall-supported upright bipedal stance" style="max-width: 100%; max-height: 100%; object-fit: contain;">
     </div>
-    <p style="margin-top: 8px;">
-      <em>Wall-supported upright bipedal locomotion of Unitree Go2 under MR-NMPC control.</em>
-    </p>
+    <p style="margin-top: 8px;"><em>Hardware: Unitree Go2 in wall-supported bipedal locomotion.</em></p>
   </div>
-
 </div>
 
-
 ---
 
-## 📊 Key Results (From Hardware & Simulation)
+## 🛠️ What I built
 
-- **13× improvement** in uneven terrain traversal distance: **MR-NMPC:** ~66% vs **Raibert heuristic baseline:** <5%
-- Successful **crouch → stand → sustained bipedal trot in place**
-- Robust recovery from:
-  - Terrain height uncertainty
-  - External contact disturbances
-  - Contact switching events
-
-All plots and performance breakdowns are shown in the **project video above**.
-
----
-
-## 📄 Technical Documentation (Optional Deep Dive)
-
-For full mathematical formulation and control architecture:
-
-📄 **[Download Conference Poster (PDF)](assets/bipedal/bipedal_MRNMPC.pdf)**
-
-(This contains the full MR-NMPC formulation, architecture diagram, and quantitative plots.)
-
----
-
-## 🏭 Industry Relevance
-
-This work directly applies to:
-
-- **Industrial inspection robots**
-- **Search & rescue platforms**
-- **Legged manipulation in cluttered environments**
-- **Real-time contact-rich motion planning**
-
-Core engineering skills demonstrated:
-- Real-time optimal control
-- Multi-rate control design
-- Contact modeling
-- Whole-body control
-- Hardware deployment & testing
+- The MR-NMPC formulation and its CasADi/IPOPT implementation
+- A multithreaded real-time C++ control stack linking the NMPC to the whole-body controller
+- A 1 kHz kinematics–IMU state estimator for hardware deployment
+- The randomized-terrain benchmark against the Raibert heuristic
 
 ---
 
 ## 🔗 Related Project
 
-- [Robust MPC for Tremor-Suppression Exoskeleton](rmpc-exoskeleton.md)
+- [Robust MPC for a Tremor-Suppression Exoskeleton](rmpc-exoskeleton.md)
 
 [← Back to Home](./)
