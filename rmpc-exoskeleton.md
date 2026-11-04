@@ -11,17 +11,11 @@ This project develops a **robust model predictive controller (RMPC)** for the **
 
 ---
 
-## 🎥 Video
-
-▶️ **[Watch the project video](https://www.youtube.com/watch?v=X2gqHbkB6GM)** (about 2.5 minutes)
-
----
-
 ## 🦾 System
 
 - **Device:** TAWE, a 6-DoF passive linkage with **2 actuated joints**: wrist flexion/extension (FE, up-down) and radial/ulnar deviation (RUD, side-to-side)
-- **Model:** the 9-DoF arm–exoskeleton system, reduced through its holonomic constraints to a 2-DoF wrist model for real-time control
-- **Tremor data:** recorded with TAWE in passive mode during standard clinical tasks. ET patients show distinct power peaks in the **4–12 Hz** band.
+- **Model:** The 9-DoF arm–exoskeleton system, reduced through its holonomic constraints to a 2-DoF wrist model for real-time control
+- **Tremor Data:** Recorded with TAWE in passive mode during standard clinical tasks. ET patients show distinct power peaks in the **4–12 Hz** band.
 
 <div style="text-align:center; margin-bottom: 24px;">
   <img src="assets/exoskeleton/TAWE.png" alt="Tremor Alleviating Wrist Exoskeleton (TAWE) worn on the forearm" style="max-width: 85%; border-radius: 10px;">
@@ -32,16 +26,16 @@ This project develops a **robust model predictive controller (RMPC)** for the **
 
 ## 🧠 Approach
 
-- **One branch per extreme disturbance:** tremor torque is mapped to joint-velocity deviations, and a **convex hull with 4 vertices** bounds them. The RMPC predicts one branch for each vertex, with its own cost and constraints.
-- **One combined optimization:** branch costs are summed and constraints are stacked, and all branches **share the same first control input**, which is the action applied now.
-- **State-dependent cost weighting (key contribution):** each branch is weighted by how closely its disturbance aligns with the current tracking error, so the controller **prioritizes the tremor currently pushing the wrist off course**. This avoids the sluggish, overly conservative behavior of equal weighting.
-- **Real-time:** 20 ms sampling, prediction horizon N = 15, mean solve time **14.6 ms** (MATLAB, desktop).
+- **One Branch per Extreme Disturbance:** Tremor torque is mapped to joint-velocity deviations, and a **convex hull with 4 vertices** bounds them. The RMPC predicts one branch for each vertex, with its own cost and constraints.
+- **One Combined Optimization:** Branch costs are summed and constraints are stacked, and all branches **share the same first control input**, which is the action applied now.
+- **State-Dependent Cost Weighting (Key Contribution):** Each branch is weighted by how closely its disturbance aligns with the current tracking error, so the controller **prioritizes the tremor currently pushing the wrist off course**. This avoids the sluggish, overly conservative behavior of equal weighting.
+- **Real-Time:** 20 ms sampling, prediction horizon N = 15, mean solve time **14.6 ms** (MATLAB, desktop).
 
 ---
 
-## 📊 Results (simulation)
+## 📊 Results (Simulation)
 
-**Benchmark tremor** (amplitude-modulated sinusoids, 3–7 Hz). Tracking error, RMSE in rad (lower is better):
+**Benchmark Tremor** (amplitude-modulated sinusoids, 3–7 Hz). Tracking error, RMSE in rad (lower is better):
 
 | Joint | MPC | NMPC | MPC-NDO | **RMPC** |
 |---|---|---|---|---|
@@ -50,11 +44,11 @@ This project develops a **robust model predictive controller (RMPC)** for the **
 
 RMPC has **20–33% lower error** than MPC-NDO, an MPC augmented with a nonlinear disturbance observer and the strongest baseline. The observer reacts with a phase lag, while RMPC corrects proactively.
 
-**Stress tests** versus MPC-NDO:
-- **Sensor noise (0.01 rad):** MPC-NDO amplifies the noise, and RMPC keeps **up to 46% lower** error.
-- **50% actuation latency:** both controllers perform comparably.
+**Stress Tests** versus MPC-NDO:
+- **Sensor Noise (0.01 rad):** MPC-NDO amplifies the noise, and RMPC keeps **up to 46% lower** error.
+- **50% Actuation Latency:** Both controllers perform comparably.
 
-**Patient-derived tremor:** RMPC cuts tracking error by **up to 47%** versus MPC-NDO (RMSE 0.015 / 0.032 vs. 0.024 / 0.060 rad).
+**Patient-Derived Tremor:** RMPC cuts tracking error by **up to 47%** versus MPC-NDO (RMSE 0.015 / 0.032 vs. 0.024 / 0.060 rad).
 
 <div style="display: flex; justify-content: center; gap: 24px; flex-wrap: wrap;">
   <div style="text-align: center; width: 45%;">
@@ -73,7 +67,7 @@ RMPC has **20–33% lower error** than MPC-NDO, an MPC augmented with a nonlinea
 
 ---
 
-## 🛠️ What I built
+## 🛠️ What I Built
 
 - The reduced-order wrist model and the RMPC formulation with state-dependent cost weighting
 - The data-driven convex uncertainty set derived from tremor torques
