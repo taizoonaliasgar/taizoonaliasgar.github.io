@@ -9,12 +9,6 @@ This project lets a quadrupedal robot walk upright on its rear legs while bracin
 
 ---
 
-## 🎥 Video
-
-▶️ **[Watch the project video](https://www.youtube.com/watch?v=N6XwNJ0E9s0)**: simulation results and preliminary hardware experiments.
-
----
-
 ## 🎯 Problem
 
 - An upright, wall-supported posture is **underactuated, hybrid and dynamically unstable**, with brief, small-area contacts.
