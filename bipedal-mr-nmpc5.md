@@ -25,9 +25,9 @@ This project lets a quadrupedal robot walk upright on its rear legs while bracin
 
 ## 🧠 Approach
 
-- **Multi-rate NMPC (high level):** jointly plans discrete-time footstep locations (updated once per contact phase) and continuous-time center-of-mass and orientation trajectories, using a single-rigid-body model with contact constraints.
-- **Foothold propagation:** future footholds are part of the prediction dynamics, so the controller can choose **asymmetric front and rear step lengths** to keep balance.
-- **Whole-body controller (low level):** a nonlinear QP controller based on virtual constraints tracks the MPC references using the full-order robot dynamics.
+- **Multi-Rate NMPC (High Level):** Jointly plans discrete-time footstep locations (updated once per contact phase) and continuous-time center-of-mass and orientation trajectories, using a single-rigid-body model with contact constraints.
+- **Foothold Propagation:** Future footholds are part of the prediction dynamics, so the controller can choose **asymmetric front and rear step lengths** to keep balance.
+- **Whole-Body Controller (Low Level):** A nonlinear QP controller based on virtual constraints tracks the MPC references using the full-order robot dynamics.
 
 | Parameter | Value |
 |---|---|
@@ -37,7 +37,7 @@ This project lets a quadrupedal robot walk upright on its rear legs while bracin
 | Solver | CasADi / IPOPT |
 | Low-Level Whole-Body Controller Rate | **1 kHz** |
 | Simulation Platform | Unitree A1 in RaiSim |
-| Hardware Platform | Unitree Go2 (preliminary) |
+| Hardware Platform | Unitree Go2 (Preliminary) |
 
 ---
 
@@ -47,8 +47,8 @@ This project lets a quadrupedal robot walk upright on its rear legs while bracin
 - **2.9× higher success rate** than MPC with Raibert-heuristic foot placement: **68.8% vs. 23.6%** across **250 randomized 7 m tracks** with random wooden-block terrain, with speeds ramped up to 0.8 m/s.
 - Rejects a **50 N** sinusoidal push while staying within safety and kinematic limits, by choosing shorter, asymmetric steps where the heuristic over-steps.
 
-**Preliminary hardware (Unitree Go2)**
-- Real-time deployment: the robot moves from a crouch to **upright wall-supported bipedal locomotion** and keeps its balance for **over 60 s**.
+**Preliminary Hardware (Unitree Go2)**
+- Real-time deployment: The robot moves from a crouch to **upright wall-supported bipedal locomotion** and keeps its balance for **over 60 s**.
 - The main limitation is noise in velocity estimation. Improving state estimation is ongoing work.
 
 <div style="display: flex; justify-content: center; gap: 24px; flex-wrap: wrap;">
@@ -68,7 +68,7 @@ This project lets a quadrupedal robot walk upright on its rear legs while bracin
 
 ---
 
-## 🛠️ What I built
+## 🛠️ What I Built
 
 - The MR-NMPC formulation and its CasADi/IPOPT implementation
 - A multithreaded real-time C++ control stack linking the NMPC to the whole-body controller
