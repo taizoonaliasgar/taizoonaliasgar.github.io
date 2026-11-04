@@ -39,6 +39,12 @@ This project lets a quadrupedal robot walk upright on its rear legs while bracin
 
 **Simulation (Unitree A1)**
 - **2.9× higher success rate** than MPC with Raibert-heuristic foot placement: **68.8% vs. 23.6%** across **250 randomized 7 m tracks** with random wooden-block terrain, with speeds ramped up to 0.8 m/s.
+
+<div style="text-align:center; margin: 12px 0 20px 0;">
+  <img src="assets/bipedal/survival_plot.png" alt="Survival plot: share of 250 trials still successful versus distance traveled; MR-NMPC ends at 68.8%, Raibert heuristic at 23.6%" style="max-width: 85%;">
+  <p style="margin-top: 8px;"><em>Share of 250 randomized trials still successful versus distance traveled. Both controllers perform similarly for the first 2 m; as speed increases, the Raibert heuristic fails more often, while MR-NMPC keeps 68.8% of trials successful at 7 m.</em></p>
+</div>
+
 - Rejects a **50 N** sinusoidal push while staying within safety and kinematic limits, by choosing shorter, asymmetric steps where the heuristic over-steps.
 
 **Preliminary Hardware (Unitree Go2)**
