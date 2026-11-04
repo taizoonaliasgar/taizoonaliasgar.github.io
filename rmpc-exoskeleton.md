@@ -35,7 +35,20 @@ This project develops a **robust model predictive controller (RMPC)** for the **
 
 ## 📊 Results (Simulation)
 
-**Benchmark Tremor** (amplitude-modulated sinusoids, 3–7 Hz). Tracking error, RMSE in rad (lower is better):
+**Benchmark Tremor** (amplitude-modulated sinusoids, 3–7 Hz, applied between 3 and 7 s). Solid lines show side-to-side (RUD) motion and dashed lines up-down (FE) motion.
+
+<div style="display: flex; justify-content: center; gap: 24px; flex-wrap: wrap;">
+  <div style="text-align: center; flex: 1 1 320px; max-width: 48%;">
+    <img src="assets/exoskeleton/tracking_constant_reference.png" alt="Wrist tracking of a constant reference under tremor: RMPC (orange) stays closest to the reference, compared with MPC, NMPC and MPC-NDO" style="width: 100%;">
+    <p style="margin-top: 8px;"><em>Constant reference</em></p>
+  </div>
+  <div style="text-align: center; flex: 1 1 320px; max-width: 48%;">
+    <img src="assets/exoskeleton/tracking_timevarying_reference.png" alt="Wrist tracking of a time-varying reference under tremor: RMPC (orange) follows the reference most closely, compared with MPC, NMPC and MPC-NDO" style="width: 100%;">
+    <p style="margin-top: 8px;"><em>Time-varying reference</em></p>
+  </div>
+</div>
+
+Tracking error, RMSE in rad (lower is better):
 
 | Joint | MPC | NMPC | MPC-NDO | **RMPC** |
 |---|---|---|---|---|
@@ -50,20 +63,6 @@ RMPC has **20–33% lower error** than MPC-NDO, an MPC augmented with a nonlinea
 
 **Patient-Derived Tremor:** RMPC cuts tracking error by **up to 47%** versus MPC-NDO (RMSE 0.015 / 0.032 vs. 0.024 / 0.060 rad).
 
-<div style="display: flex; justify-content: center; gap: 24px; flex-wrap: wrap;">
-  <div style="text-align: center; width: 45%;">
-    <div style="height: 260px; display: flex; align-items: center; justify-content: center;">
-      <img src="assets/exoskeleton/steady_reference_tracking3.png" alt="Constant-reference wrist tracking under tremor disturbance" style="max-width: 100%; max-height: 100%; object-fit: contain;">
-    </div>
-    <p style="margin-top: 8px;"><em>Constant reference: RMPC (red) vs. nominal MPC (blue) under tremor disturbance.</em></p>
-  </div>
-  <div style="text-align: center; width: 45%;">
-    <div style="height: 260px; display: flex; align-items: center; justify-content: center;">
-      <img src="assets/exoskeleton/sin_reference_tracking3.png" alt="Sinusoidal-reference wrist tracking under tremor disturbance" style="max-width: 100%; max-height: 100%; object-fit: contain;">
-    </div>
-    <p style="margin-top: 8px;"><em>Sinusoidal reference: RMPC (red) vs. nominal MPC (blue) under tremor disturbance.</em></p>
-  </div>
-</div>
 
 ---
 
