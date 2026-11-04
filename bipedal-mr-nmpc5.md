@@ -29,12 +29,15 @@ This project lets a quadrupedal robot walk upright on its rear legs while bracin
 - **Foothold propagation:** future footholds are part of the prediction dynamics, so the controller can choose **asymmetric front and rear step lengths** to keep balance.
 - **Whole-body controller (low level):** a nonlinear QP controller based on virtual constraints tracks the MPC references using the full-order robot dynamics.
 
-| | |
+| Parameter | Value |
 |---|---|
-| High-level MR-NMPC | **100 Hz**, horizon 20 steps (200 ms), mean solve **8.26 ms** (CasADi/IPOPT) |
-| Low-level whole-body controller | **1 kHz** |
-| Simulation | Unitree A1 in RaiSim |
-| Hardware | Unitree Go2 (preliminary) |
+| High-Level MR-NMPC Rate | **100 Hz** |
+| Prediction Horizon | 20 steps (200 ms) |
+| Mean Solve Time | **8.26 ms** |
+| Solver | CasADi / IPOPT |
+| Low-Level Whole-Body Controller Rate | **1 kHz** |
+| Simulation Platform | Unitree A1 in RaiSim |
+| Hardware Platform | Unitree Go2 (preliminary) |
 
 ---
 
