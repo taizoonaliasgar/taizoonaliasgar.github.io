@@ -42,8 +42,9 @@ This project lets a quadrupedal robot walk upright on its rear legs while bracin
 - Rejects a **50 N** sinusoidal push while staying within safety and kinematic limits, by choosing shorter, asymmetric steps where the heuristic over-steps.
 
 **Preliminary Hardware (Unitree Go2)**
-- Real-time deployment: The robot moves from a crouch to **upright wall-supported bipedal locomotion** and keeps its balance for **over 60 s**.
-- The main limitation is noise in velocity estimation. Improving state estimation is ongoing work.
+- **Real-Time Deployment:** The robot moves from a crouch to **upright wall-supported bipedal locomotion** and keeps its balance for **over 60 s**.
+- **State Estimation:** A dedicated estimator reduced noise in the velocity estimates, which was critical for getting the Go2 to stand and balance upright.
+- **Next Step:** Wall-supported bipedal walking over uneven terrain on the Go2 hardware.
 
 <div style="display: flex; justify-content: center; gap: 24px; flex-wrap: wrap;">
   <div style="text-align: center; width: 45%;">
@@ -66,7 +67,7 @@ This project lets a quadrupedal robot walk upright on its rear legs while bracin
 
 - The MR-NMPC formulation and its CasADi/IPOPT implementation
 - A multithreaded real-time C++ control stack linking the NMPC to the whole-body controller
-- A 1 kHz kinematics–IMU state estimator for hardware deployment
+- A 1 kHz kinematics–IMU state estimator that reduced velocity-estimation noise, enabling upright balance on hardware
 - The randomized-terrain benchmark against the Raibert heuristic
 
 ---
