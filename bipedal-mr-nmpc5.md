@@ -1,6 +1,8 @@
-[← Back to Home](./)
-
-# Multi-Rate NMPC for Wall-Supported Bipedal Locomotion of Quadrupedal Robots
+---
+title: "Multi-Rate NMPC for Wall-Supported Bipedal Locomotion of Quadrupedal Robots"
+header:
+  og_image: /assets/bipedal/thumbnail2.PNG
+---
 
 **IEEE/RSJ IROS 2026** · T. Chunawala, J. Kim, K. Akbari Hamed  
 📄 [Paper (arXiv)](https://arxiv.org/abs/2607.01574) · 🎥 [Video](https://www.youtube.com/watch?v=N6XwNJ0E9s0)
@@ -8,7 +10,7 @@
 This project lets a quadrupedal robot walk upright on its rear legs while bracing its front legs against nearby walls, for tight corridors and cluttered spaces. A **multi-rate nonlinear MPC (MR-NMPC)** plans the slow-updating footstep locations and the fast-updating body trajectory **together in one optimization**, instead of relying on a heuristic foot-placement rule.
 
 <div style="text-align:center; margin: 12px 0 20px 0;">
-  <img src="assets/bipedal/snapshots.png" alt="Simulation snapshots of a Unitree A1 in wall-supported bipedal stance: with the Raibert heuristic the robot leaves the red safety envelope on irregular terrain and under a push, while with MR-NMPC it stays inside the green envelope" style="max-width: 90%;">
+  <img src="/assets/bipedal/snapshots.png" alt="Simulation snapshots of a Unitree A1 in wall-supported bipedal stance: with the Raibert heuristic the robot leaves the red safety envelope on irregular terrain and under a push, while with MR-NMPC it stays inside the green envelope" style="max-width: 90%;">
   <p style="margin-top: 8px;"><em>Simulation (Unitree A1). Top: with Raibert-heuristic foot placement, the robot leaves the safety envelope (red) on irregular terrain and under an external push. Bottom: with the MR-NMPC planner, it stays within the envelope (green).</em></p>
 </div>
 
@@ -25,7 +27,7 @@ This project lets a quadrupedal robot walk upright on its rear legs while bracin
 ## 🧠 Approach
 
 <div style="text-align:center; margin: 12px 0 20px 0;">
-  <img src="assets/bipedal/architecture.png" alt="Layered control architecture: a multi-rate NMPC planner with a slow footstep planner and fast single-rigid-body dynamics feeds a whole-body controller that sends joint torques to the robot" style="max-width: 100%;">
+  <img src="/assets/bipedal/architecture.png" alt="Layered control architecture: a multi-rate NMPC planner with a slow footstep planner and fast single-rigid-body dynamics feeds a whole-body controller that sends joint torques to the robot" style="max-width: 100%;">
   <p style="margin-top: 8px;"><em>Layered control architecture. The multi-rate NMPC planner (100 Hz) contains a slow footstep planner and the fast SRB dynamics; footstep updates δ(t)Δv are applied only at switching instants. A whole-body controller tracks the plan using the full-order dynamics.</em></p>
 </div>
 
@@ -37,7 +39,7 @@ This project lets a quadrupedal robot walk upright on its rear legs while bracin
 - **Wall-Supported Gait:** Each gait domain cycles through four-, three- and two-contact phases, with the front feet bracing against the wall.
 
 <div style="text-align:center; margin: 12px 0 20px 0;">
-  <img src="assets/bipedal/contact_schedule.png" alt="Contact schedule of the four feet over two 200 ms gait domains" style="max-width: 75%;">
+  <img src="/assets/bipedal/contact_schedule.png" alt="Contact schedule of the four feet over two 200 ms gait domains" style="max-width: 75%;">
   <p style="margin-top: 8px;"><em>Contact schedule over two gait domains (filled = foot in contact). Each 200 ms domain moves from four contacts (50 ms) to three (30 ms) to two (120 ms), alternating sides.</em></p>
 </div>
 
@@ -60,7 +62,7 @@ This project lets a quadrupedal robot walk upright on its rear legs while bracin
 - **2.9× higher success rate** than MPC with Raibert-heuristic foot placement: **68.8% vs. 23.6%** across **250 randomized 7 m tracks** with random wooden-block terrain, with speeds ramped up to 0.8 m/s.
 
 <div style="text-align:center; margin: 12px 0 20px 0;">
-  <img src="assets/bipedal/survival_plot.png" alt="Survival plot: share of 250 trials still successful versus distance traveled; MR-NMPC ends at 68.8%, Raibert heuristic at 23.6%" style="max-width: 85%;">
+  <img src="/assets/bipedal/survival_plot.png" alt="Survival plot: share of 250 trials still successful versus distance traveled; MR-NMPC ends at 68.8%, Raibert heuristic at 23.6%" style="max-width: 85%;">
   <p style="margin-top: 8px;"><em>Share of 250 randomized trials still successful versus distance traveled. Both controllers perform similarly for the first 2 m; as speed increases, the Raibert heuristic fails more often, while MR-NMPC keeps 68.8% of trials successful at 7 m.</em></p>
 </div>
 
@@ -74,13 +76,13 @@ This project lets a quadrupedal robot walk upright on its rear legs while bracin
 <div style="display: flex; justify-content: center; gap: 24px; flex-wrap: wrap;">
   <div style="text-align: center; width: 45%;">
     <div style="height: 260px; display: flex; align-items: center; justify-content: center; background: #f4f4f4; border-radius: 10px; overflow: hidden;">
-      <img src="assets/bipedal/thumbnail1.PNG" alt="Unitree A1 in simulation on uneven wooden-block terrain" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+      <img src="/assets/bipedal/thumbnail1.PNG" alt="Unitree A1 in simulation on uneven wooden-block terrain" style="max-width: 100%; max-height: 100%; object-fit: contain;">
     </div>
     <p style="margin-top: 8px;"><em>Simulation: Unitree A1 on randomized wooden-block terrain.</em></p>
   </div>
   <div style="text-align: center; width: 45%;">
     <div style="height: 260px; display: flex; align-items: center; justify-content: center; background: #f4f4f4; border-radius: 10px; overflow: hidden;">
-      <img src="assets/bipedal/thumbnail2.PNG" alt="Unitree Go2 in a wall-supported upright bipedal stance" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+      <img src="/assets/bipedal/thumbnail2.PNG" alt="Unitree Go2 in a wall-supported upright bipedal stance" style="max-width: 100%; max-height: 100%; object-fit: contain;">
     </div>
     <p style="margin-top: 8px;"><em>Hardware: Unitree Go2 in wall-supported bipedal locomotion.</em></p>
   </div>
@@ -99,6 +101,4 @@ This project lets a quadrupedal robot walk upright on its rear legs while bracin
 
 ## 🔗 Related Project
 
-- [Robust MPC for a Tremor-Suppression Exoskeleton](rmpc-exoskeleton.md)
-
-[← Back to Home](./)
+- [Robust MPC for a Tremor-Suppression Exoskeleton](/rmpc-exoskeleton.html)

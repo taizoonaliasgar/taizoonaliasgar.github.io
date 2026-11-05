@@ -1,0 +1,22 @@
+---
+# Only the main Sass file needs front matter (the dashes are enough)
+search: false
+---
+
+@charset "utf-8";
+
+// Site accent colors (maroon, matching the project figures and videos)
+$primary-color: #791731;
+$link-color: #791731;
+$link-color-hover: #4f0f20;
+$link-color-visited: #791731;
+
+@import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
+@import "minimal-mistakes"; // main partials
+
+// Project cards: same-height thumbnails regardless of image shape
+.archive__item-teaser img {
+  height: 200px;
+  object-fit: cover;
+  object-position: center 30%;
+}

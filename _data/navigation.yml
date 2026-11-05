@@ -1,0 +1,9 @@
+main:
+  - title: "Home"
+    url: /
+  - title: "Bipedal MR-NMPC"
+    url: /bipedal-mr-nmpc5.html
+  - title: "Exoskeleton RMPC"
+    url: /rmpc-exoskeleton.html
+  - title: "Resume"
+    url: /resume.pdf

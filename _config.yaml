@@ -1,8 +1,0 @@
-theme: jekyll-theme-cayman
-title: "Taizoon Aliasgar Chunawala"
-description: "Motion Planning and Control for Legged and Wearable Robots"
-defaults:
-  - scope:
-      path: ""
-    values:
-      image: /assets/bipedal/thumbnail2.PNG
