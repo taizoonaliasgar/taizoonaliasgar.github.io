@@ -40,11 +40,11 @@ I'm a **Ph.D. candidate in Mechanical Engineering at Virginia Tech** (graduating
 
 ### Lead author
 
-{% include feature_row id="feature_row_lead" %}
+{% include feature_row id="feature_row_lead" type="left" %}
 
 ### Co-author
 
-{% include feature_row id="feature_row_coauthor" %}
+{% include feature_row id="feature_row_coauthor" type="left" %}
 
 ## Publications
 
