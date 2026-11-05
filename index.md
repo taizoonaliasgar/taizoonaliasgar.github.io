@@ -30,6 +30,13 @@ feature_row_coauthor:
     url: "https://www.youtube.com/watch?v=N0z3zvkmvW4"
     btn_label: "Watch video"
     btn_class: "btn--inverse"
+  - image_path: https://img.youtube.com/vi/vqUSzNS60v8/hqdefault.jpg
+    alt: "Video thumbnail: Unitree A1 carrying a payload"
+    title: "Adaptive MPC for Payload Transportation by Quadrupedal Robots"
+    excerpt: "**IEEE RA-L 2024.** Helped design the payload-transportation experiments and ran additional hardware experiments on the Unitree A1 to address reviewer comments. The adaptive MPC estimates unknown payload parameters online, letting the robot carry up to **109% of its mass on flat terrain** and **91% on rough terrain**."
+    url: "https://www.youtube.com/watch?v=vqUSzNS60v8"
+    btn_label: "Watch video"
+    btn_class: "btn--inverse"
 ---
 
 I'm a **Ph.D. candidate in Mechanical Engineering at Virginia Tech** (graduating **May 2027**), working on model predictive control, trajectory optimization and whole-body control for legged robots and wearable exoskeletons.
