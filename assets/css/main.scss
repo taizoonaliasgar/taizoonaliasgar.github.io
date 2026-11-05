@@ -52,10 +52,3 @@ $link-color-visited: #791731;
   }
 }
 
-// Tables marked {: .table-centered} in Markdown: shrink to content and center
-table.table-centered {
-  display: table;
-  width: auto;
-  margin-left: auto;
-  margin-right: auto;
-}

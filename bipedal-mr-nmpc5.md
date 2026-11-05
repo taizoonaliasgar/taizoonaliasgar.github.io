@@ -43,17 +43,21 @@ This project lets a quadrupedal robot walk upright on its rear legs while bracin
   <p style="margin-top: 8px;"><em>Contact schedule over two gait domains (filled = foot in contact). Each 200 ms domain moves from four contacts (50 ms) to three (30 ms) to two (120 ms), alternating sides.</em></p>
 </div>
 
-| Parameter | Value |
-|---|---|
-| High-Level MR-NMPC Rate | **100 Hz** |
-| Footstep Update Rate | **5 Hz** (once per gait domain) |
-| Prediction Horizon | 20 steps (200 ms) |
-| Mean Solve Time | **8.26 ms** |
-| Solver | CasADi / IPOPT |
-| Low-Level Whole-Body Controller Rate | **1 kHz** |
-| Simulation Platform | Unitree A1 in RaiSim |
-| Hardware Platform | Unitree Go2 (Preliminary) |
-{: .table-centered}
+<table style="display: table; width: auto; margin-left: auto; margin-right: auto;">
+  <thead>
+    <tr><th>Parameter</th><th>Value</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>High-Level MR-NMPC Rate</td><td><strong>100 Hz</strong></td></tr>
+    <tr><td>Footstep Update Rate</td><td><strong>5 Hz</strong> (once per gait domain)</td></tr>
+    <tr><td>Prediction Horizon</td><td>20 steps (200 ms)</td></tr>
+    <tr><td>Mean Solve Time</td><td><strong>8.26 ms</strong></td></tr>
+    <tr><td>Solver</td><td>CasADi / IPOPT</td></tr>
+    <tr><td>Low-Level Whole-Body Controller Rate</td><td><strong>1 kHz</strong></td></tr>
+    <tr><td>Simulation Platform</td><td>Unitree A1 in RaiSim</td></tr>
+    <tr><td>Hardware Platform</td><td>Unitree Go2 (Preliminary)</td></tr>
+  </tbody>
+</table>
 
 ---
 
