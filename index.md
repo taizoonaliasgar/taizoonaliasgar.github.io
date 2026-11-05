@@ -67,4 +67,5 @@ I'm a **Ph.D. candidate in Mechanical Engineering at Virginia Tech** (graduating
 
 **Control & Planning:** Nonlinear, Robust and Distributed MPC · Trajectory Optimization · Contact Planning · Whole-Body Control (QP)  
 **Software:** C++ (real-time, multithreaded) · Python · MATLAB · ROS/ROS2 · CasADi · IPOPT · OSQP · Pinocchio  
+**Simulation:** RaiSim · MuJoCo  
 **Hardware:** Unitree Go2 · Unitree A1 · Kinova Arm
