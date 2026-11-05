@@ -7,6 +7,11 @@
 
 This project lets a quadrupedal robot walk upright on its rear legs while bracing its front legs against nearby walls, for tight corridors and cluttered spaces. A **multi-rate nonlinear MPC (MR-NMPC)** plans the slow-updating footstep locations and the fast-updating body trajectory **together in one optimization**, instead of relying on a heuristic foot-placement rule.
 
+<div style="text-align:center; margin: 12px 0 20px 0;">
+  <img src="assets/bipedal/snapshots.png" alt="Simulation snapshots of a Unitree A1 in wall-supported bipedal stance: with the Raibert heuristic the robot leaves the red safety envelope on irregular terrain and under a push, while with MR-NMPC it stays inside the green envelope" style="max-width: 90%;">
+  <p style="margin-top: 8px;"><em>Simulation (Unitree A1). Top: with Raibert-heuristic foot placement, the robot leaves the safety envelope (red) on irregular terrain and under an external push. Bottom: with the MR-NMPC planner, it stays within the envelope (green).</em></p>
+</div>
+
 ---
 
 ## 🎯 Problem
@@ -19,13 +24,27 @@ This project lets a quadrupedal robot walk upright on its rear legs while bracin
 
 ## 🧠 Approach
 
-- **Multi-Rate NMPC (High Level):** Jointly plans discrete-time footstep locations (updated once per contact phase) and continuous-time center-of-mass and orientation trajectories, using a single-rigid-body model with contact constraints.
+<div style="text-align:center; margin: 12px 0 20px 0;">
+  <img src="assets/bipedal/architecture.png" alt="Layered control architecture: a multi-rate NMPC planner with a slow footstep planner and fast single-rigid-body dynamics feeds a whole-body controller that sends joint torques to the robot" style="max-width: 100%;">
+  <p style="margin-top: 8px;"><em>Layered control architecture. The multi-rate NMPC planner (100 Hz) contains a slow footstep planner and the fast SRB dynamics; footstep updates δ(t)Δv are applied only at switching instants. A whole-body controller tracks the plan using the full-order dynamics.</em></p>
+</div>
+
+- **Multi-Rate NMPC (High Level):** Plans footstep locations together with the center-of-mass and orientation trajectories, using a single-rigid-body (SRB) model with contact constraints.
+- **Multi-Rate Formulation:** Footstep locations are added to the state, and their updates are gated by an indicator function that is nonzero only at contact-switching instants. This lets one optimization handle slow footstep decisions (5 Hz) alongside fast body-motion and contact-force updates (100 Hz), without a separate footstep planner.
 - **Foothold Propagation:** Future footholds are part of the prediction dynamics, so the controller can choose **asymmetric front and rear step lengths** to keep balance.
 - **Whole-Body Controller (Low Level):** A nonlinear QP controller based on virtual constraints tracks the MPC references using the full-order robot dynamics.
+
+- **Wall-Supported Gait:** Each gait domain cycles through four-, three- and two-contact phases, with the front feet bracing against the wall.
+
+<div style="text-align:center; margin: 12px 0 20px 0;">
+  <img src="assets/bipedal/contact_schedule.png" alt="Contact schedule of the four feet over two 200 ms gait domains" style="max-width: 75%;">
+  <p style="margin-top: 8px;"><em>Contact schedule over two gait domains (filled = foot in contact). Each 200 ms domain moves from four contacts (50 ms) to three (30 ms) to two (120 ms), alternating sides.</em></p>
+</div>
 
 | Parameter | Value |
 |---|---|
 | High-Level MR-NMPC Rate | **100 Hz** |
+| Footstep Update Rate | **5 Hz** (once per gait domain) |
 | Prediction Horizon | 20 steps (200 ms) |
 | Mean Solve Time | **8.26 ms** |
 | Solver | CasADi / IPOPT |
