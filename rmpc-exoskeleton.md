@@ -1,9 +1,8 @@
 ---
-image: /assets/exoskeleton/TAWE.png
+title: "Robust MPC for a Tremor-Suppression Wrist Exoskeleton (TAWE)"
+header:
+  og_image: /assets/exoskeleton/TAWE.png
 ---
-[← Back to Home](./)
-
-# Robust MPC for a Tremor-Suppression Wrist Exoskeleton (TAWE)
 
 **ASME Journal of Dynamic Systems, Measurement, and Control** (accepted, in press) · T. Chunawala, S. Janakaraj, J. Decker, M. Ahmad, S. Vijayan, O. Barry, K. Akbari Hamed  
 🎥 [Video](https://www.youtube.com/watch?v=X2gqHbkB6GM) · 📄 Paper link coming soon
@@ -21,7 +20,7 @@ This project develops a **robust model predictive controller (RMPC)** for the **
 - **Tremor Data:** Recorded in an IRB-approved study with **3 essential-tremor participants and 3 healthy controls**. TAWE logged wrist motion in passive mode alongside **EEG and EMG** during standard clinical tasks (arm extension, nose touching, Archimedes spiral). ET participants show distinct power peaks in the **4–12 Hz** band.
 
 <div style="text-align:center; margin-bottom: 24px;">
-  <img src="assets/exoskeleton/TAWE.png" alt="Tremor Alleviating Wrist Exoskeleton (TAWE) worn on the forearm" style="max-width: 85%; border-radius: 10px;">
+  <img src="/assets/exoskeleton/TAWE.png" alt="Tremor Alleviating Wrist Exoskeleton (TAWE) worn on the forearm" style="max-width: 85%; border-radius: 10px;">
   <p style="margin-top: 8px;"><em>The Tremor Alleviating Wrist Exoskeleton (TAWE).</em></p>
 </div>
 
@@ -43,7 +42,7 @@ Standard robust MPC weights every disturbance branch equally, so it guards again
 For each branch ℓ, an alignment score ρ<sub>ℓ</sub> compares the tracking error δx<sub>t</sub> with the disturbance direction d<sup>ℓ</sup>. The scores are normalized into weights w<sub>ℓ</sub> = ρ<sub>ℓ</sub> / (ρ<sub>1</sub> + … + ρ<sub>4</sub>), and the controller minimizes the weighted cost **J<sub>tot</sub> = w<sub>1</sub>J<sup>1</sup> + w<sub>2</sub>J<sup>2</sup> + w<sub>3</sub>J<sup>3</sup> + w<sub>4</sub>J<sup>4</sup>**.
 
 <div style="text-align:center; margin: 12px 0 20px 0;">
-  <img src="assets/exoskeleton/cost_weighting.png" alt="Vector diagram: four grey disturbance directions d1 to d4, the orange current tracking error, and alignment scores rho 1 to rho 4; rho 1 is largest because the error points almost along d1" style="max-width: 55%;">
+  <img src="/assets/exoskeleton/cost_weighting.png" alt="Vector diagram: four grey disturbance directions d1 to d4, the orange current tracking error, and alignment scores rho 1 to rho 4; rho 1 is largest because the error points almost along d1" style="max-width: 55%;">
   <p style="margin-top: 8px;"><em>Grey arrows: the four extreme disturbances d<sup>1</sup>–d<sup>4</sup>. Orange: the current tracking error δx<sub>t</sub>. Each ρ<sub>ℓ</sub> measures how well the error aligns with d<sup>ℓ</sup>. Here the error points almost along d<sup>1</sup>, so that branch gets the largest weight, while d<sup>2</sup>, pointing the opposite way, gets the smallest.</em></p>
 </div>
 
@@ -55,11 +54,11 @@ For each branch ℓ, an alignment score ρ<sub>ℓ</sub> compares the tracking e
 
 <div style="display: flex; justify-content: center; gap: 24px; flex-wrap: wrap;">
   <div style="text-align: center; flex: 1 1 320px; max-width: 48%;">
-    <img src="assets/exoskeleton/tracking_constant_reference.png" alt="Wrist tracking of a constant reference under tremor: RMPC (orange) stays closest to the reference, compared with MPC, NMPC and MPC-NDO" style="width: 100%;">
+    <img src="/assets/exoskeleton/tracking_constant_reference.png" alt="Wrist tracking of a constant reference under tremor: RMPC (orange) stays closest to the reference, compared with MPC, NMPC and MPC-NDO" style="width: 100%;">
     <p style="margin-top: 8px;"><em>Constant reference</em></p>
   </div>
   <div style="text-align: center; flex: 1 1 320px; max-width: 48%;">
-    <img src="assets/exoskeleton/tracking_timevarying_reference.png" alt="Wrist tracking of a time-varying reference under tremor: RMPC (orange) follows the reference most closely, compared with MPC, NMPC and MPC-NDO" style="width: 100%;">
+    <img src="/assets/exoskeleton/tracking_timevarying_reference.png" alt="Wrist tracking of a time-varying reference under tremor: RMPC (orange) follows the reference most closely, compared with MPC, NMPC and MPC-NDO" style="width: 100%;">
     <p style="margin-top: 8px;"><em>Time-varying reference</em></p>
   </div>
 </div>
@@ -96,6 +95,4 @@ RMPC has **20–33% lower error** than MPC-NDO, an MPC augmented with a nonlinea
 
 ## 🔗 Related Project
 
-- [Multi-Rate NMPC for Wall-Supported Bipedal Locomotion](bipedal-mr-nmpc5.md)
-
-[← Back to Home](./)
+- [Multi-Rate NMPC for Wall-Supported Bipedal Locomotion](/bipedal-mr-nmpc5.html)

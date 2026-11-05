@@ -1,0 +1,57 @@
+remote_theme: "mmistakes/minimal-mistakes@4.28.1"
+minimal_mistakes_skin: "default"
+
+locale: "en-US"
+title: "Taizoon Chunawala"
+name: "Taizoon Aliasgar Chunawala"
+description: "Motion Planning and Control for Legged and Wearable Robots"
+url: "https://taizoonaliasgar.github.io"
+baseurl: ""
+repository: "taizoonaliasgar/taizoonaliasgar.github.io"
+og_image: "/assets/bipedal/thumbnail2.PNG"
+search: false
+breadcrumbs: false
+
+author:
+  name: "Taizoon Chunawala"
+  avatar: "/assets/profile/headshot.jpg"
+  bio: "Ph.D. candidate, Mechanical Engineering, Virginia Tech. Motion planning and control for legged and wearable robots."
+  location: "Blacksburg, VA"
+  links:
+    - label: "Email"
+      icon: "fas fa-fw fa-envelope"
+      url: "mailto:taizoon.chunawala@gmail.com"
+    - label: "Resume (PDF)"
+      icon: "fas fa-fw fa-file-pdf"
+      url: "/resume.pdf"
+    - label: "LinkedIn"
+      icon: "fab fa-fw fa-linkedin"
+      url: "https://linkedin.com/in/taizoon-chunawala"
+    - label: "Google Scholar"
+      icon: "fas fa-fw fa-graduation-cap"
+      url: "https://scholar.google.com/citations?user=pDHCFAQAAAAJ&hl=en"
+    - label: "YouTube"
+      icon: "fab fa-fw fa-youtube"
+      url: "https://www.youtube.com/@TaizoonChunawala"
+
+footer:
+  links: []
+
+markdown: kramdown
+kramdown:
+  input: GFM
+
+plugins:
+  - jekyll-remote-theme
+  - jekyll-include-cache
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: single
+      author_profile: true
+      read_time: false
+      comments: false
+      share: false
+      related: false
