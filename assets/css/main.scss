@@ -22,13 +22,15 @@ $link-color-visited: #791731;
 }
 
 // List-style project cards: image and text side by side, vertically centered
-.feature__item--left .archive__item-title {
+.page__content .feature__item--left .archive__item-title {
   margin-top: 0;
-  font-size: 1.25em;
+  font-size: 1.3rem;
 }
 
 @include breakpoint($small) {
   .feature__item--left .archive__item {
+    float: none;
+    width: 100%;
     display: flex;
     align-items: center;
     gap: 1.5em;
@@ -38,6 +40,7 @@ $link-color-visited: #791731;
     float: none;
     flex: 0 0 300px;
     width: 300px;
+    margin-bottom: 0;
   }
 
   .feature__item--left .archive__item-body {
