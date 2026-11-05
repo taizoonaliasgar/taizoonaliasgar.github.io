@@ -84,7 +84,7 @@ RMPC has **20–33% lower error** than MPC-NDO, an MPC augmented with a nonlinea
 **Why It Wins:** MPC-NDO's observer underestimates peak tremor torque and lags behind it. RMPC instead applies faster, more aggressive torque corrections ("active stiffness"), trading a smoother control input for tighter tracking.
 
 **Stress Tests** versus MPC-NDO:
-- **Sensor Noise (0.01 rad):** MPC-NDO amplifies the noise, and RMPC keeps **up to 46% lower** error.
+- **Sensor Noise (0.01 rad):** MPC-NDO amplifies noise; RMPC has **up to 46% lower** error.
 - **50% Actuation Latency:** Both controllers perform comparably.
 
 **Patient-Derived Tremor:** RMPC cuts tracking error by **up to 47%** versus MPC-NDO (RMSE 0.015 / 0.032 vs. 0.024 / 0.060 rad).
