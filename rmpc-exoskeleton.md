@@ -63,7 +63,10 @@ For each branch ℓ, an alignment score ρ<sub>ℓ</sub> compares the tracking e
   </div>
 </div>
 
+<div style="display: flex; flex-direction: column; align-items: center; margin-bottom: 1em;">
+
 <p style="text-align: center; margin-bottom: 0.5em;"><em>Tracking error, RMSE in rad (lower is better)</em></p>
+
 <table style="display: table; width: auto; margin-left: auto; margin-right: auto;">
   <thead>
     <tr><th>Joint</th><th>MPC</th><th>NMPC</th><th>MPC-NDO</th><th><strong>RMPC</strong></th></tr>
@@ -73,6 +76,8 @@ For each branch ℓ, an alignment score ρ<sub>ℓ</sub> compares the tracking e
     <tr><td>Up-down (FE)</td><td>0.072</td><td>0.074</td><td>0.035</td><td><strong>0.028</strong></td></tr>
   </tbody>
 </table>
+
+</div>
 
 RMPC has **20–33% lower error** than MPC-NDO, an MPC augmented with a nonlinear disturbance observer and the strongest baseline.
 
