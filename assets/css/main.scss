@@ -20,3 +20,31 @@ $link-color-visited: #791731;
   object-fit: cover;
   object-position: center 30%;
 }
+
+// List-style project cards: image and text side by side, vertically centered
+.feature__item--left .archive__item-title {
+  margin-top: 0;
+  font-size: 1.25em;
+}
+
+@include breakpoint($small) {
+  .feature__item--left .archive__item {
+    display: flex;
+    align-items: center;
+    gap: 1.5em;
+  }
+
+  .feature__item--left .archive__item-teaser {
+    float: none;
+    flex: 0 0 300px;
+    width: 300px;
+  }
+
+  .feature__item--left .archive__item-body {
+    float: none;
+    flex: 1 1 auto;
+    width: auto;
+    padding-inline-start: 0;
+    padding-inline-end: 0;
+  }
+}
