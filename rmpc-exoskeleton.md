@@ -1,3 +1,6 @@
+---
+image: /assets/exoskeleton/TAWE.png
+---
 [← Back to Home](./)
 
 # Robust MPC for a Tremor-Suppression Wrist Exoskeleton (TAWE)
