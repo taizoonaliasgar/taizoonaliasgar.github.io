@@ -53,6 +53,7 @@ This project lets a quadrupedal robot walk upright on its rear legs while bracin
 | Low-Level Whole-Body Controller Rate | **1 kHz** |
 | Simulation Platform | Unitree A1 in RaiSim |
 | Hardware Platform | Unitree Go2 (Preliminary) |
+{: .table-centered}
 
 ---
 
