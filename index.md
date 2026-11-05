@@ -1,8 +1,8 @@
 ---
 title: "About"
 feature_row_lead:
-  - image_path: /assets/bipedal/thumbnail2.PNG
-    alt: "Unitree Go2 standing upright between two walls, bracing its front legs against them"
+  - image_path: /assets/bipedal/go2_card.jpg
+    alt: "Unitree Go2 in an upright bipedal stance between two walls, bracing its front legs against them"
     title: "Multi-Rate NMPC for Wall-Supported Bipedal Locomotion"
     excerpt: "**IEEE/RSJ IROS 2026.** A multi-rate NMPC that jointly plans footsteps and body motion, achieving **2.9× higher success** than a Raibert-heuristic baseline over 250 randomized rough-terrain trials (simulation), with preliminary hardware deployment on a Unitree Go2. [Paper (arXiv)](https://arxiv.org/abs/2607.01574) · [Video](https://www.youtube.com/watch?v=N6XwNJ0E9s0)"
     url: "/bipedal-mr-nmpc5.html"
