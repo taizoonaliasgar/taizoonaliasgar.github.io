@@ -15,7 +15,7 @@ This project develops a **robust model predictive controller (RMPC)** for the **
 
 - **Device:** TAWE, a 6-DoF passive linkage with **2 actuated joints**: wrist flexion/extension (FE, up-down) and radial/ulnar deviation (RUD, side-to-side)
 - **Model:** The 9-DoF arm–exoskeleton system, reduced through its holonomic constraints to a 2-DoF wrist model for real-time control
-- **Tremor Data:** Recorded with TAWE in passive mode during standard clinical tasks. ET patients show distinct power peaks in the **4–12 Hz** band.
+- **Tremor Data:** Recorded in an IRB-approved study with **3 essential-tremor participants and 3 healthy controls**. TAWE logged wrist motion in passive mode alongside **EEG and EMG** during standard clinical tasks (arm extension, nose touching, Archimedes spiral). ET participants show distinct power peaks in the **4–12 Hz** band.
 
 <div style="text-align:center; margin-bottom: 24px;">
   <img src="assets/exoskeleton/TAWE.png" alt="Tremor Alleviating Wrist Exoskeleton (TAWE) worn on the forearm" style="max-width: 85%; border-radius: 10px;">
@@ -28,8 +28,21 @@ This project develops a **robust model predictive controller (RMPC)** for the **
 
 - **One Branch per Extreme Disturbance:** Tremor torque is mapped to joint-velocity deviations, and a **convex hull with 4 vertices** bounds them. The RMPC predicts one branch for each vertex, with its own cost and constraints.
 - **One Combined Optimization:** Branch costs are summed and constraints are stacked, and all branches **share the same first control input**, which is the action applied now.
-- **State-Dependent Cost Weighting (Key Contribution):** Each branch is weighted by how closely its disturbance aligns with the current tracking error, so the controller **prioritizes the tremor currently pushing the wrist off course**. This avoids the sluggish, overly conservative behavior of equal weighting.
+- **Four Vertices:** Compared with 5 or 6 vertices, 4 gave the lowest side-to-side error (**0.010 vs. 0.033 rad**) with similar up-down error, and the fastest solve (**14.6 ms vs. 16–17 ms**).
 - **Real-Time:** 20 ms sampling, prediction horizon N = 15, mean solve time **14.6 ms** (MATLAB, desktop).
+
+---
+
+## ⭐ Key Contribution: State-Dependent Cost Weighting
+
+Standard robust MPC weights every disturbance branch equally, so it guards against all four extremes at once and reacts sluggishly. This controller instead weights each branch by how closely its disturbance aligns with the **current tracking error**, so it **prioritizes the tremor currently pushing the wrist off course**.
+
+For each branch ℓ, an alignment score ρ<sub>ℓ</sub> compares the tracking error δx<sub>t</sub> with the disturbance direction d<sup>ℓ</sup>. The scores are normalized into weights w<sub>ℓ</sub> = ρ<sub>ℓ</sub> / (ρ<sub>1</sub> + … + ρ<sub>4</sub>), and the controller minimizes the weighted cost **J<sub>tot</sub> = w<sub>1</sub>J<sup>1</sup> + w<sub>2</sub>J<sup>2</sup> + w<sub>3</sub>J<sup>3</sup> + w<sub>4</sub>J<sup>4</sup>**.
+
+<div style="text-align:center; margin: 12px 0 20px 0;">
+  <img src="assets/exoskeleton/cost_weighting.png" alt="Vector diagram: four grey disturbance directions d1 to d4, the orange current tracking error, and alignment scores rho 1 to rho 4; rho 1 is largest because the error points almost along d1" style="max-width: 55%;">
+  <p style="margin-top: 8px;"><em>Grey arrows: the four extreme disturbances d<sup>1</sup>–d<sup>4</sup>. Orange: the current tracking error δx<sub>t</sub>. Each ρ<sub>ℓ</sub> measures how well the error aligns with d<sup>ℓ</sup>. Here the error points almost along d<sup>1</sup>, so that branch gets the largest weight, while d<sup>2</sup>, pointing the opposite way, gets the smallest.</em></p>
+</div>
 
 ---
 
@@ -55,13 +68,17 @@ Tracking error, RMSE in rad (lower is better):
 | Side-to-side (RUD) | 0.031 | 0.030 | 0.015 | **0.010** |
 | Up-down (FE) | 0.072 | 0.074 | 0.035 | **0.028** |
 
-RMPC has **20–33% lower error** than MPC-NDO, an MPC augmented with a nonlinear disturbance observer and the strongest baseline. The observer reacts with a phase lag, while RMPC corrects proactively.
+RMPC has **20–33% lower error** than MPC-NDO, an MPC augmented with a nonlinear disturbance observer and the strongest baseline.
+
+**Why It Wins:** MPC-NDO's observer underestimates peak tremor torque and lags behind it. RMPC instead applies faster, more aggressive torque corrections ("active stiffness"), trading a smoother control input for tighter tracking.
 
 **Stress Tests** versus MPC-NDO:
 - **Sensor Noise (0.01 rad):** MPC-NDO amplifies the noise, and RMPC keeps **up to 46% lower** error.
 - **50% Actuation Latency:** Both controllers perform comparably.
 
 **Patient-Derived Tremor:** RMPC cuts tracking error by **up to 47%** versus MPC-NDO (RMSE 0.015 / 0.032 vs. 0.024 / 0.060 rad).
+
+**Next Step:** Integrate the RMPC on the TAWE prototype for clinical trials, and tailor the uncertainty set to each patient's tremor profile, with learning-based adaptation as a future extension.
 
 
 ---
