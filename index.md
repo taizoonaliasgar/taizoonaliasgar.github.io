@@ -34,7 +34,7 @@ feature_row_coauthor:
 
 I'm a **Ph.D. candidate in Mechanical Engineering at Virginia Tech** (graduating **May 2027**), working on model predictive control, trajectory optimization and whole-body control for legged robots and wearable exoskeletons.
 
-**I'm seeking full-time roles in robot motion planning and control.** [Download my resume (PDF)](/resume.pdf).
+**I'm seeking full-time roles in robot motion planning and control.**
 
 ## Projects
 
