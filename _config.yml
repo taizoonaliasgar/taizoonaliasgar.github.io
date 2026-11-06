@@ -37,6 +37,9 @@ author:
 footer:
   links: []
 
+atom_feed:
+  hide: true
+
 markdown: kramdown
 kramdown:
   input: GFM

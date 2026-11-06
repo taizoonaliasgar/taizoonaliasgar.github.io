@@ -1,5 +1,6 @@
 ---
-title: "About"
+title: "Robot Motion Planning & Control"
+description: "Taizoon Chunawala, Ph.D. candidate at Virginia Tech working on model predictive control, trajectory optimization and whole-body control for legged robots and wearable exoskeletons."
 feature_row_lead:
   - image_path: /assets/bipedal/go2_card.jpg
     alt: "Unitree Go2 in an upright bipedal stance between two walls, bracing its front legs against them"

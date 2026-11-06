@@ -1,5 +1,6 @@
 ---
 title: "Multi-Rate NMPC for Wall-Supported Bipedal Locomotion of Quadrupedal Robots"
+description: "A multi-rate nonlinear MPC that jointly plans footsteps and body motion so a quadruped can walk upright against walls: 2.9x higher success than a Raibert-heuristic baseline in simulation, with preliminary hardware on a Unitree Go2 (IEEE/RSJ IROS 2026)."
 header:
   og_image: /assets/bipedal/thumbnail2.PNG
 ---
@@ -16,7 +17,7 @@ This project lets a quadrupedal robot walk upright on its rear legs while bracin
 
 ---
 
-## 🎯 Problem
+## Problem
 
 - An upright, wall-supported posture is **underactuated, hybrid and dynamically unstable**, with brief, small-area contacts.
 - Body motion, contact forces and foot placement are **strongly coupled**, and they evolve at different rates.
@@ -24,7 +25,7 @@ This project lets a quadrupedal robot walk upright on its rear legs while bracin
 
 ---
 
-## 🧠 Approach
+## Approach
 
 <div style="text-align:center; margin: 12px 0 20px 0;">
   <img src="/assets/bipedal/architecture.png" alt="Layered control architecture: a multi-rate NMPC planner with a slow footstep planner and fast single-rigid-body dynamics feeds a whole-body controller that sends joint torques to the robot" style="max-width: 100%;">
@@ -61,7 +62,7 @@ This project lets a quadrupedal robot walk upright on its rear legs while bracin
 
 ---
 
-## 📊 Results
+## Results
 
 **Simulation (Unitree A1)**
 - **2.9× higher success rate** than MPC with Raibert-heuristic foot placement: **68.8% vs. 23.6%** across **250 randomized 7 m tracks** with random wooden-block terrain, with speeds ramped up to 0.8 m/s.
@@ -95,7 +96,7 @@ This project lets a quadrupedal robot walk upright on its rear legs while bracin
 
 ---
 
-## 🛠️ What I Built
+## What I Built
 
 - The MR-NMPC formulation and its CasADi/IPOPT implementation
 - A multithreaded real-time C++ control stack linking the NMPC to the whole-body controller
@@ -104,6 +105,6 @@ This project lets a quadrupedal robot walk upright on its rear legs while bracin
 
 ---
 
-## 🔗 Related Project
+## Related Project
 
 - [Robust MPC for a Tremor-Suppression Exoskeleton](/rmpc-exoskeleton.html)
