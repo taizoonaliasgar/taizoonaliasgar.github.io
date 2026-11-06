@@ -1,5 +1,6 @@
 ---
 title: "Robust MPC for a Tremor-Suppression Wrist Exoskeleton (TAWE)"
+description: "Robust MPC with state-dependent cost weighting for a tremor-suppression wrist exoskeleton, cutting tracking error by up to 47% versus observer-based MPC on patient-derived tremor in simulation (ASME JDSMC, accepted)."
 header:
   og_image: /assets/exoskeleton/TAWE.png
 ---
@@ -13,7 +14,7 @@ This project develops a **robust model predictive controller (RMPC)** for the **
 
 ---
 
-## 🦾 System
+## System
 
 - **Device:** TAWE, a 6-DoF passive linkage with **2 actuated joints**: wrist flexion/extension (FE, up-down) and radial/ulnar deviation (RUD, side-to-side)
 - **Model:** The 9-DoF arm–exoskeleton system, reduced through its holonomic constraints to a 2-DoF wrist model for real-time control
@@ -26,16 +27,16 @@ This project develops a **robust model predictive controller (RMPC)** for the **
 
 ---
 
-## 🧠 Approach
+## Approach
 
 - **One Branch per Extreme Disturbance:** Tremor torque is mapped to joint-velocity deviations, and a **convex hull with 4 vertices** bounds them. The RMPC predicts one branch for each vertex, with its own cost and constraints.
 - **One Combined Optimization:** Branch costs are summed and constraints are stacked, and all branches **share the same first control input**, which is the action applied now.
-- **Four Vertices:** Compared with 5 or 6 vertices, 4 gave the lowest side-to-side error (**0.010 vs. 0.033 rad**) with similar up-down error, and the fastest solve (**14.6 ms vs. 16–17 ms**).
 - **Real-Time:** 20 ms sampling, prediction horizon N = 15, mean solve time **14.6 ms** (MATLAB, desktop).
+- **Four Vertices:** Compared with 5 or 6 vertices, 4 gave the lowest side-to-side error (**0.010 vs. 0.033 rad**) with similar up-down error, and solved faster (more vertices took 16–17 ms).
 
 ---
 
-## ⭐ Key Contribution: State-Dependent Cost Weighting
+## Key Contribution: State-Dependent Cost Weighting
 
 Standard robust MPC weights every disturbance branch equally, so it guards against all four extremes at once and reacts sluggishly. This controller instead weights each branch by how closely its disturbance aligns with the **current tracking error**, so it **prioritizes the tremor currently pushing the wrist off course**.
 
@@ -48,7 +49,7 @@ For each branch ℓ, an alignment score ρ<sub>ℓ</sub> compares the tracking e
 
 ---
 
-## 📊 Results (Simulation)
+## Results (Simulation)
 
 **Benchmark Tremor** (amplitude-modulated sinusoids, 3–7 Hz, applied between 3 and 7 s). Solid lines show side-to-side (RUD) motion and dashed lines up-down (FE) motion.
 
@@ -94,7 +95,7 @@ RMPC has **20–33% lower error** than MPC-NDO, an MPC augmented with a nonlinea
 
 ---
 
-## 🛠️ What I Built
+## What I Built
 
 - The reduced-order wrist model and the RMPC formulation with state-dependent cost weighting
 - The data-driven convex uncertainty set derived from tremor torques
@@ -102,6 +103,6 @@ RMPC has **20–33% lower error** than MPC-NDO, an MPC augmented with a nonlinea
 
 ---
 
-## 🔗 Related Project
+## Related Project
 
 - [Multi-Rate NMPC for Wall-Supported Bipedal Locomotion](/bipedal-mr-nmpc5.html)
