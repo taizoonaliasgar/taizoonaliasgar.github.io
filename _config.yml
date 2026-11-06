@@ -17,7 +17,7 @@ author:
   avatar: "/assets/profile/headshot.jpg"
   location: "Blacksburg, VA"
   links:
-    - label: "Email"
+    - label: "taizoon.chunawala@gmail.com"
       icon: "fas fa-fw fa-envelope"
       url: "mailto:taizoon.chunawala@gmail.com"
     - label: "Resume (PDF)"
