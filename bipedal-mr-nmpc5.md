@@ -5,10 +5,9 @@ header:
   og_image: /assets/bipedal/thumbnail2.PNG
 ---
 
-**IEEE/RSJ IROS 2026** · T. Chunawala, J. Kim, K. Akbari Hamed  
-📄 [Paper (arXiv)](https://arxiv.org/abs/2607.01574)
+**IEEE/RSJ IROS 2026** · T. Chunawala, J. Kim, K. Akbari Hamed
 
-{% include video id="N6XwNJ0E9s0" provider="youtube" title="Project video: Multi-Rate NMPC for wall-supported bipedal locomotion" %}
+<a href="https://www.youtube.com/watch?v=N6XwNJ0E9s0" class="btn btn--primary">▶ Watch the Video</a> <a href="https://arxiv.org/abs/2607.01574" class="btn btn--inverse">📄 Read the Paper (arXiv)</a>
 
 This project lets a quadrupedal robot walk upright on its rear legs while bracing its front legs against nearby walls, for tight corridors and cluttered spaces. A **multi-rate nonlinear MPC (MR-NMPC)** plans the slow-updating footstep locations and the fast-updating body trajectory **together in one optimization**, instead of relying on a heuristic foot-placement rule.
 
