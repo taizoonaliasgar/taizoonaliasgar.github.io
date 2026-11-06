@@ -52,3 +52,8 @@ $link-color-visited: #791731;
   }
 }
 
+// The name already appears under the headshot in the sidebar, so hide the
+// duplicate site title in the top navigation bar (the "Home" link remains)
+.masthead .site-title {
+  display: none;
+}
