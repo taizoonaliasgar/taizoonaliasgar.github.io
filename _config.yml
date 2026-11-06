@@ -15,7 +15,6 @@ breadcrumbs: false
 author:
   name: "Taizoon Chunawala"
   avatar: "/assets/profile/headshot.jpg"
-  bio: "Ph.D. candidate, Mechanical Engineering, Virginia Tech. Motion planning and control for legged and wearable robots."
   location: "Blacksburg, VA"
   links:
     - label: "Email"
