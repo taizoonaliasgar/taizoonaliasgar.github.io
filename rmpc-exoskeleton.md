@@ -6,7 +6,9 @@ header:
 ---
 
 **ASME Journal of Dynamic Systems, Measurement, and Control** (accepted, in press) · T. Chunawala, S. Janakaraj, J. Decker, M. Ahmad, S. Vijayan, O. Barry, K. Akbari Hamed  
-🎥 [Video](https://www.youtube.com/watch?v=X2gqHbkB6GM) · 📄 Paper link coming soon
+📄 Paper link coming soon
+
+{% include video id="X2gqHbkB6GM" provider="youtube" title="Project video: Robust MPC for a tremor-suppression exoskeleton" %}
 
 This project develops a **robust model predictive controller (RMPC)** for the **Tremor Alleviating Wrist Exoskeleton (TAWE)**. It suppresses essential-tremor motion while preserving voluntary wrist movement. Instead of reacting to tremor after it happens, the controller **plans in advance for the worst-case tremor disturbances**.
 
