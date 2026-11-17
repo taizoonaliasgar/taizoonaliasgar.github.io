@@ -57,3 +57,25 @@ $link-color-visited: #791731;
 .author__name {
   display: none;
 }
+
+// Phones and tablets: the "Follow" dropdown is anchored to the right edge of
+// the button by default, so it extends left past the screen edge. Anchor it to
+// the button's left edge instead, keep it within the screen, and point the
+// caret at the button.
+@include breakpoint(max-width $large - 1px) {
+  .author__urls {
+    inset-inline-end: auto;
+    inset-inline-start: 0;
+    max-width: calc(100vw - 2rem);
+  }
+
+  .author__urls li {
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
+  .author__urls::before,
+  .author__urls::after {
+    inset-inline-start: 1.5em;
+  }
+}
