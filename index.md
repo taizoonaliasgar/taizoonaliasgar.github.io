@@ -58,10 +58,10 @@ I'm a **Ph.D. candidate in Mechanical Engineering at Virginia Tech** (graduating
 
 1. **T. Chunawala**, J. Kim, K. Akbari Hamed, "Multi-Rate Nonlinear Model Predictive Control for Wall-Supported Bipedal Locomotion of Quadrupedal Robots," *IEEE/RSJ IROS*, 2026. [[arXiv]](https://arxiv.org/abs/2607.01574)
 2. **T. Chunawala** et al., "Robust Model Predictive Control of a Tremor-Suppression Exoskeleton under Tremor-Induced Disturbances," *ASME Journal of Dynamic Systems, Measurement, and Control*, accepted, in press.
-3. R. Sambhus, K. K. Mehta, A. M. Sadeghi, B. M. Imran, J. Kim, **T. Chunawala** et al., "A Nonlinear MPC Framework for Loco-Manipulation of Quadrupedal Robots With Non-Negligible Manipulator Dynamics," *IEEE Robotics and Automation Letters*, 2026.
-4. B. M. Imran, J. Kim, **T. Chunawala** et al., "Safety-Critical and Distributed Nonlinear Predictive Controllers for Teams of Quadrupedal Robots," *IEEE Robotics and Automation Letters*, 2025.
-5. L. Amanzadeh, **T. Chunawala** et al., "Predictive Control with Indirect Adaptive Laws for Payload Transportation by Quadrupedal Robots," *IEEE Robotics and Automation Letters*, 2024.
-6. **T. Chunawala**, M. Ghandchi-Tehrani, J. Yan, "An Optimum Design of a Double Pendulum in Autoparametric Resonance for Energy Harvesting Applications," *Vibroengineering Procedia*, 2016.
+3. R. Sambhus, K. K. Mehta, A. M. Sadeghi, B. M. Imran, J. Kim, **T. Chunawala** et al., "A Nonlinear MPC Framework for Loco-Manipulation of Quadrupedal Robots With Non-Negligible Manipulator Dynamics," *IEEE Robotics and Automation Letters*, 2026. [[IEEE]](https://ieeexplore.ieee.org/document/11393908)
+4. B. M. Imran, J. Kim, **T. Chunawala** et al., "Safety-Critical and Distributed Nonlinear Predictive Controllers for Teams of Quadrupedal Robots," *IEEE Robotics and Automation Letters*, 2025. [[IEEE]](https://ieeexplore.ieee.org/document/11091376)
+5. L. Amanzadeh, **T. Chunawala** et al., "Predictive Control with Indirect Adaptive Laws for Payload Transportation by Quadrupedal Robots," *IEEE Robotics and Automation Letters*, 2024. [[IEEE]](https://ieeexplore.ieee.org/document/10705076)
+6. **T. Chunawala**, M. Ghandchi-Tehrani, J. Yan, "An Optimum Design of a Double Pendulum in Autoparametric Resonance for Energy Harvesting Applications," *Vibroengineering Procedia*, 2016. [[Paper]](https://www.extrica.com/article/17715)
 
 
 ## Skills
