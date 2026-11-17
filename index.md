@@ -23,21 +23,21 @@ feature_row_coauthor:
     excerpt: "**IEEE RA-L 2026.** Implemented the real-time interface between a 60 Hz decomposition NMPC planner and a 500 Hz QP-based whole-body controller; supported hardware validation on a Unitree Go2 carrying a 4.4 kg Kinova arm."
     url: "https://www.youtube.com/watch?v=SaZMqanFWv0"
     btn_label: "Watch video"
-    btn_class: "btn--inverse"
+    btn_class: "btn--primary"
   - image_path: https://img.youtube.com/vi/N0z3zvkmvW4/hqdefault.jpg
     alt: "Video thumbnail: team of Unitree A1 robots"
     title: "Safety-Critical Distributed NMPC for Multi-Robot Quadrupedal Teams"
     excerpt: "**IEEE RA-L 2025.** Co-developed a 100 Hz distributed nonlinear MPC for Unitree A1 robot teams; fixed real-time data-pipeline and communication-delay issues to enable stable hardware experiments."
     url: "https://www.youtube.com/watch?v=N0z3zvkmvW4"
     btn_label: "Watch video"
-    btn_class: "btn--inverse"
+    btn_class: "btn--primary"
   - image_path: https://img.youtube.com/vi/vqUSzNS60v8/hqdefault.jpg
     alt: "Video thumbnail: Unitree A1 carrying a payload"
     title: "Adaptive MPC for Payload Transportation by Quadrupedal Robots"
     excerpt: "**IEEE RA-L 2024.** Helped design the payload-transportation experiments and ran additional hardware experiments on the Unitree A1 to address reviewer comments. The adaptive MPC estimates unknown payload parameters online, letting the robot carry up to **109% of its mass on flat terrain** and **91% on rough terrain**."
     url: "https://www.youtube.com/watch?v=vqUSzNS60v8"
     btn_label: "Watch video"
-    btn_class: "btn--inverse"
+    btn_class: "btn--primary"
 ---
 
 I'm a **Ph.D. candidate in Mechanical Engineering at Virginia Tech** (graduating **May 2027**), working on model predictive control, trajectory optimization and whole-body control for legged robots and wearable exoskeletons.
